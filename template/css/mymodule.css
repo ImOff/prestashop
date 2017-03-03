@@ -1,0 +1,217 @@
+.config-container {
+	display: block !important;
+}
+
+.roll-container {
+	background-color: transparent;
+}
+
+.roll-container2 {
+	background-color: transparent;
+}
+
+.profile {
+	font-size: 14px;
+}
+
+.behaviour {
+	font-size: 14px;
+	margin-top: 1vh;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 4vh;
+}
+
+.header h4 {
+	margin-bottom: 2vh;
+}
+
+.header span {
+	font-size: 11px;
+}
+
+.roll-container .profile, .roll-container2 .behaviour {
+	background-color: #5AAFE4;
+	text-align: center;
+	color: #000;
+	padding: 10px 0px 5px 0px;
+	border-radius: 3px;
+}
+
+.hidden-div {
+	display: none;
+	width: 96%;
+	background-color: #fafafa;
+	margin: 0vh 1vh 1vh 2vh;
+}
+
+.under-hidden {
+	background-color: #7DAFED;
+}
+
+.under-hidden div {
+	text-align: center;
+}
+
+.under-hidden p {
+	padding: 10px 4px 4px 4px;
+	color: #000;
+}
+
+.category-border {
+	border-bottom: 1px solid #fff;
+}
+
+.detail-under-div {
+	display: none;
+	padding: 0px 10px 0px 10px;
+	background-color: #fff;
+}
+
+.search-container {
+	margin-top: 5vh;
+	margin-bottom: 4vh;
+	text-align: center;
+	font-size: 9px;
+}
+
+.button-search {
+	background-color: #ADE98D;
+	border: none;
+	border-radius: 3px;
+	color: #000;
+	padding: 5px 10px 5px 10px;
+	-webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
+	box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
+}
+
+.display-result-container {
+	text-align: center;
+	font-family: 'Helvetica';
+}
+
+#resulttext {
+	display: none;
+}
+
+.option-container {
+	width: 100%;
+	margin-bottom: 10vh;
+	margin-top: 3vh;
+}
+
+.list {
+	background-color: #39688F;
+	float: left;
+	width: 20%;
+	text-align: center;
+	color: #fafafa;
+	margin-left: 28%;
+	margin-right: 5%;
+	padding: 5px 5px 5px 5px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
+	box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
+}
+
+.csv {
+	background-color: #39688F;
+	float: left;
+	width: 20%;
+	text-align: center;
+	color: #fafafa;
+	padding: 5px 5px 5px 5px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
+	box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.from {
+	float: left;
+	margin-right: 10%;
+	margin-left: 15%;
+}
+
+.form input {
+	width: 40px;
+}
+
+.to input {
+	width: 40px;
+}
+.to {
+	float: left;
+}
+
+.detail-criteria-before {
+	font-size: 7px;
+	float: left;
+	color: #000;
+}
+
+.detail-criteria-after {
+	color: #000;
+	margin-top: -32.5%;
+	font-size: 7px;
+	float: right;
+}
+
+
+/* MULTIPLE SELECT */
+.multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+  text-align: left !important;
+  padding-left: 10px !important;
+  padding-top: 5px !important;
+}
+
+.checkboxes label {
+  display: block;
+}
+
+.checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+.checkboxes span {
+	padding-left: 15px;
+}
