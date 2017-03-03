@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?> 
 <bloc>
 	<Profile>
-		<description>Newsletter</description>
+		<canonical>newsletter</canonical>
+		<description>Newsletter (if enabled)</description>
 		<switch>Oui</switch>
 		<switch>Non</switch>
 		<type>
@@ -22,7 +23,9 @@
 		<switch>Exclu</switch>
 		<type>
 			<name>select</name>
-			<nameTable>Groupe Client</nameTable>
+			<nameTable>group</nameTable>
+			<column>id_group</column>
+			<placeholder>All group</placeholder>
 		</type>
 	</Profile>
 	<Profile>
@@ -31,7 +34,9 @@
 		<switch>Exclu</switch>
 		<type>
 			<name>select</name>
-			<nameTable>Langue</nameTable>
+			<nameTable>lang</nameTable>
+			<column>id_lang</column>
+			<placeholder>All languages</placeholder>
 		</type>
 	</Profile>
 	<Profile>
@@ -40,16 +45,20 @@
 		<switch>Exclu</switch>
 		<type>
 			<name>select</name>
-			<nameTable>Devise</nameTable>
+			<nameTable>currency</nameTable>
+			<column>name</column>
+			<placeholder>All currencies</placeholder>
 		</type>
 	</Profile>
 	<Profile>
-		<description>Pays</description>
+		<description>Country</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
 		<type>
 			<name>select</name>
-			<nameTable>Pays</nameTable>
+			<nameTable>country_lang</nameTable>
+			<column>name</column>
+			<placeholder>All countries</placeholder>
 		</type>
 	</Profile>
 	<Profile>
@@ -58,11 +67,15 @@
 		<switch>Exclu</switch>
 		<type>
 			<name>text</name>
-			<nameTable>Age</nameTable>
+			<nameTable>customer</nameTable>
+			<column>birthday</column>
+			<placeholder>Min</placeholder>
 		</type>
 		<type>
 			<name>text</name>
-			<nameTable>Age</nameTable>
+			<nameTable>customer</nameTable>
+			<column>birthday</column>
+			<placeholder>Max</placeholder>
 		</type>
 	</Profile>
 	<Drop>
@@ -72,6 +85,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Categorie</nameTable>
+			<column></column>
+			<placeholder>All Categories</placeholder>
 		</type>
 	</Drop>
 	<Drop>

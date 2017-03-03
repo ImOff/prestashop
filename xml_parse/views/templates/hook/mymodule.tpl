@@ -1,16 +1,14 @@
-<li>
-  <a href="{$base_dir}modules/mymodule/mymodule_page.php" title="{l s='Click this link' mod='mymodule'}">{l s='Click me!' mod='mymodule'}</a>
-</li>
-<!-- Block mymodule -->
-<div id="mymodule_block_left" class="block">
-  <h4>{l s='Welcome!' mod='mymodule'}</h4>
-  <div class="block_content">
-  <p>
+<h4>{$my_module_name}</h4>
 
-  </p>
-    <ul>
-      <li><a href="{$my_module_link}"  title="{l s='Click this link' mod='mymodule'}">{l s='Click me!' mod='mymodule'}</a></li>
-    </ul>
-  </div>
-</div>
-<!-- /Block mymodule -->
+<p>Date: {$my_module_date}</p>
+
+<form method="post">
+
+{foreach $my_module_criterias as $criteria}
+  {$criteria}
+{/foreach}
+
+<button type="submit" name="search">Search</button>
+</form>
+
+<p>Search: {$my_module_search}</p>
