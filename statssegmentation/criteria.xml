@@ -8,15 +8,18 @@
 		<switch>Non</switch>
 		<type>
 			<name>none</name>
+			<query>newsletter # (1)</query>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Opt-in</description>
+		<canonical>optin</canonical>
 		<switch>Oui</switch>
 		<switch>Non</switch>
 		<type>
 			<name>none</name>
+			<query>optin # (1)</query>
 		</type>
 	</Criters>
 	<Criters>

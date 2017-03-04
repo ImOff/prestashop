@@ -23,7 +23,10 @@ class Select extends Type
 		{
 			$this->list = array();
 			foreach ($results as $row)
-				$this->list[] = array('id' => $row['id_' . $tableName], 'name' => $row['name']);
+			{
+				if (isset($row['id_' . $tableName]))
+					$this->list[] = array('id' => $row['id_' . $tableName], 'name' => $row['name']);
+			}
 		}
 	}
 

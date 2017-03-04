@@ -12,7 +12,7 @@ class Criteria
 
 	private $type = null;
 
-	function __construct($name, $description, $type)
+	function __construct($name = null, $description = null, $type = null)
 	{
 		$this->name = $name;
 		$this->description = $description;
@@ -34,9 +34,10 @@ class Criteria
 				'<input type="checkbox" class="radio" value="1" name="' . $this->name . '">' .
 				'<span>Is not</span>' .
 			'</label>' .
-			'</td></div>' .
-			$this->type->getInput($this->name) .
-			'</tr>';
+			'</td></div>';
+		if (isset($this->type))
+			$html .= $this->type->getInput($this->name);
+		$html .= '</tr>';
 
 		return $html;
 	}
@@ -56,5 +57,38 @@ class Criteria
 	function getQuery($values = array())
 	{
 		return ($this->type->getQuery($this->name, $this->isOn()));
+	}
+
+	function getName()
+	{
+		return $this->name;
+	}
+
+	function setName($name)
+	{
+		$this->name = $name;
+		return $this;
+	}
+
+	function getDescription()
+	{
+		return $this->description;
+	}
+
+	function setDescription($description)
+	{
+		$this->description = $description;
+		return $this;
+	}
+
+	function getType()
+	{
+		return $this->type;
+	}
+
+	function setType($type)
+	{
+		$this->type = $type;
+		return $this;
 	}
 }

@@ -24,11 +24,6 @@ class StatsSegmentation extends Module
 		$this->displayName = $this->l('Segmentation Module');
 		$this->description = $this->l('This is a simple module.');
 
-		$this->profile[] = new Criteria('newsletter', 'Newsletter (if enabled)',
-			new None('newsletter # (1)'));
-		$this->profile[] = new Criteria('optin', 'Opt in (if enabled)',
-			new None('optin # (1)'));
-
 		$this->parseXml('criteria.xml');
 	}
 
@@ -54,6 +49,8 @@ class StatsSegmentation extends Module
 		if (Tools::isSubmit('search'))
 		{
 			$sql = $this->getCriteriaQuery(array_merge($this->profile));
+
+			var_dump($sql);
 			$customers = Db::getInstance()->ExecuteS($sql);
 
 			$result = count($customers);
@@ -99,52 +96,37 @@ class StatsSegmentation extends Module
 	public function parseXml ($fileName) {
 		$criter = new CriteriaGenerator();
 		$pwd = getcwd();
-		$file = file_get_contents($pwd . '/../../..' . $this->_path . $fileName);
+		$file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
 		$this->xml = simplexml_load_string($file);
-		foreach ($this->xml as $key => $value) {
-			$this->switch = array();
-			foreach ($value as $key1 => $value1) {
-				$isSelect = "";
-				switch ($key1) {
-					case 'categorie' :
-						$this->categorie = $value1;
-					case 'canonical':
-						$this->canonical = $value1;
-						break;
-					case 'description':
-						$this->desc = $value1;
-						break;
-					case 'switch':
-						array_push($this->switch, $value1);
-						break;
-					case 'categorie':
-						$this->categorie = $value1;
-						break;
-					case 'type' :
-						foreach ($value1 as $key2 => $value2) {
-							switch ($key2) {
-								case 'name' :
-									$this->option = $value2;
-									break;
-								case 'nameTable':
-									$this->nameTable = $value2;
-									break;
-								case 'column':
-									$this->column = $value2;
-								case 'placeholder':
-									$this->placeholder = $value2;
-									break;
-								default:
-									break;
-							}
-						}
-					default:
-						break;
-				}
+		foreach ($this->xml as $data_criteria) {
+
+			$criteria = new Criteria();
+			$criteria
+				->setName($data_criteria->canonical->__toString())
+				->setDescription($data_criteria->description->__toString())
+				;
+
+			$type = $data_criteria->type;
+			switch ($type->name)
+			{
+				case 'none':
+					$criteria->setType(new None($type->query->__toString()));
+					var_dump($criteria->getType());
+					break;
+				case 'select':
+					$criteria->setType(new Select($type->query->__toString(),
+						$type->nameTable->__toString(),
+						$type->placeholder->__toString()));
+					break;
+				case 'text':
+					$criteria->setType(new Text($type->query->__toString(),
+						$type->nameTable->__toString(),
+						$type->placeholder->__toString()));
 			}
-			switch ($this->categorie) {
+
+			switch ($data_criteria->categorie->__toString()) {
 				case 'Profil':
-					$this->profile[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
+					$this->profile[] = $criteria;
 					break;
 				
 				default:
