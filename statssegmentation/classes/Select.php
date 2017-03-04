@@ -29,7 +29,6 @@ class Select extends Type
 
 	function getInput($name)
 	{
-		print ($name . " " . $this->labelForAll . " " . $this->tableName . "/|\\");
 		$html = null;
 
 		$html .= '<td><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(\'' . $this->tableName . '\')">';

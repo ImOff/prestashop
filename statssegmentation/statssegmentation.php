@@ -7,6 +7,10 @@ require_once('classes/CriteriaGenerator.php');
 class StatsSegmentation extends Module
 {
 	private $profile = null;
+	private $abandoned = null;
+	private $activity = null;
+	private $purchases = null;
+	private $habits = null;
 
 	public function __construct()
 	{
@@ -56,11 +60,22 @@ class StatsSegmentation extends Module
 
 		foreach ($this->profile as $criteria)
 			$profile_html[] = $criteria->getHtml();
-
+		foreach ($this->abandoned as $criteria)
+			$abandoned_html[] = $criteria->getHtml();
+		foreach ($this->activity as $criteria)
+			$activity_html[] = $criteria->getHtml();
+		foreach ($this->purchases as $criteria)
+			$purchases_html[] = $criteria->getHtml();
+		foreach ($this->habits as $criteria)
+			$habits_html[] = $criteria->getHtml();
 		$this->context->smarty->assign(
 			array(
-				'segmentation_profile_criterias'	=> $profile_html,
-				'segmentation_result'							=> $result,
+				'segmentation_profile_criterias' => $profile_html,
+				'segmentation_abandoned_criterias' => $abandoned_html,
+				'segmentation_activity_criterias' => $activity_html,
+				'segmentation_purchases_criterias' => $purchases_html,
+				'segmentation_habits_criterias' => $habits_html,
+				'segmentation_result' => $result,
 			)
 		);
 
@@ -142,7 +157,18 @@ class StatsSegmentation extends Module
 				case 'Profil':
 					$this->profile[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
 					break;
-				
+				case 'Abandoned':
+					$this->abandoned[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
+					break;
+				case 'Activity':
+					$this->activity[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
+					break;
+				case 'Purchases':
+					$this->purchases[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
+					break;
+				case 'Habits':
+					$this->habits[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
+					break;
 				default:
 					# code...
 					break;

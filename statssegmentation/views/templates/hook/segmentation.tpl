@@ -29,7 +29,9 @@
             </div>
                 <div id="activity" class="detail-under-div">
                     <table>
-											{$segmentation_activity_criterias}
+                		    {foreach $segmentation_activity_criterias as $criterias}
+								{$criterias}
+							{/foreach}
                     </table>
                 </div>
             <div onclick="displayDiv('purchases')" class="category-border">
@@ -37,7 +39,9 @@
             </div>
                 <div id="purchases" class="detail-under-div">
                     <table>
-											{$segmentation_purchases_criterias}
+                   			{foreach $segmentation_purchases_criterias as $criterias}
+								{$criterias}
+							{/foreach}
                     </table>
                 </div>
             <div onclick="displayDiv('abandoned')" class="category-border">
@@ -45,7 +49,9 @@
             </div>
                 <div id="abandoned" class="detail-under-div">
                     <table>
-											{$segmentation_abandoned_criterias}
+							{foreach $segmentation_abandoned_criterias as $criterias}
+								{$criterias}
+							{/foreach}
                     </table>
                 </div>
             <div onclick="displayDiv('habits')" class="category-border">
@@ -53,7 +59,9 @@
             </div>
                 <div id="habits" class="detail-under-div">
                     <table>
-											{$segmentation_habits_criterias}
+							{foreach $segmentation_habits_criterias as $criterias}
+								{$criterias}
+							{/foreach}
                     </table>
                 </div>
         </div>
