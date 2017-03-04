@@ -23,10 +23,7 @@ class Select extends Type
 		{
 			$this->list = array();
 			foreach ($results as $row)
-			{
-				if (isset($row['id_' . $tableName]))
-					$this->list[] = array('id' => $row['id_' . $tableName], 'name' => $row['name']);
-			}
+				$this->list[] = array('id' => $row['id_' . $tableName], 'name' => $row['name']);
 		}
 	}
 
@@ -34,12 +31,18 @@ class Select extends Type
 	{
 		$html = null;
 
-		$html .= '<select name="s_' . $name . '">';
-		$html .= '<option value="0">' . $this->labelForAll . '</option>';
-		foreach ($this->list as $element)
-			$html .= '<option value="' . $element['id'] . '">' . $element['name'] . '</option>';
-		$html .= '</select>';
-
+		$html .= '<td><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(\'' . $this->tableName . '\')">';
+		$html .= '<select name="s_' . $name . '"><option value="0">' . $this->labelForAll . '</option></select>';
+		$html .= '<div class="overSelect"></div></div>';
+		$html .= '<div id="' . $this->tableName . '" class="checkboxes">';
+		$i = 0;
+		foreach ($this->list as $element) {
+			$html .= '<label for="' . $i . "_" . $this->tableName . '">';
+			$html .= '<input type="checkbox" id="' . $i . "_" . $this->tableName . '"/>';
+			$html .= '<span>' . $element['name'] . '</span></label>';
+			$i++;
+		}
+		$html .= '</div></td>';
 		return $html;
 	}
 
@@ -48,3 +51,31 @@ class Select extends Type
 		return ($query);
 	}
 }
+
+
+/*
+ <td>
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="showCheckboxes('languages')">
+                                    <select>
+                                        <option>Languages</option>
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div id="languages" class="checkboxes">
+                                        <label for="one">
+                                            <input type="checkbox" id="one" /><span>French</span>
+                                        </label>
+                                        <label for="two">
+                                            <input type="checkbox" id="two" /><span>English</span>
+                                        </label>
+                                        <label for="three">
+                                            <input type="checkbox" id="three" /><span>Spanish</span>
+                                        </label>
+                                        <label for="four">
+                                            <input type="checkbox" id="four" /><span>Japanese</span>
+                                        </label>
+                                </div>
+                            </div>
+                        </td>
+*/
