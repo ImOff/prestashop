@@ -2,6 +2,7 @@
 
 require_once('Select.php');
 require_once('None.php');
+require_once('Text.php');
 
 class Criteria
 {

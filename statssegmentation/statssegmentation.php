@@ -2,7 +2,7 @@
 if (!defined('_PS_VERSION_'))
 	exit;
 
-require_once('classes/Criteria.php');
+require_once('classes/CriteriaGenerator.php');
 
 class StatsSegmentation extends Module
 {
@@ -28,6 +28,8 @@ class StatsSegmentation extends Module
 			new None('newsletter # @'));
 		$this->criterias[] = new Criteria('language', 'Language(s)',
 			new Select('id_lang # (@)', 'lang', $this->l('All languages')));
+
+		$this->parseXml('criteria.xml');
 	}
 
 	public function install()
@@ -65,6 +67,51 @@ class StatsSegmentation extends Module
 	public function hookBackOfficeHeader($params)
 	{
 		return $this->context->controller->addCSS($this->_path.'css/segmentation.css');
+	}
+
+	public function parseXml ($fileName) {
+		$criter = new CriteriaGenerator();
+		$pwd = getcwd();
+		$file = file_get_contents($pwd . '/../../..' . $this->_path . $fileName);
+		$this->xml = simplexml_load_string($file);
+		foreach ($this->xml as $key => $value) {
+			$this->switch = array();
+			foreach ($value as $key1 => $value1) {
+				$isSelect = "";
+				switch ($key1) {
+					case 'canonical':
+						$this->canonical = $value1;
+						break;
+					case 'description':
+						$this->desc = $value1;
+						break;
+					case 'switch':
+						array_push($this->switch, $value1);
+						break;
+					case 'type' :
+						foreach ($value1 as $key2 => $value2) {
+							switch ($key2) {
+								case 'name' :
+									$this->option = $value2;
+									break;
+								case 'nameTable':
+									$this->nameTable = $value2;
+									break;
+								case 'column':
+									$this->column = $value2;
+								case 'placeholder':
+									$this->placeholder = $value2;
+									break;
+								default:
+									break;
+							}
+						}
+					default:
+						break;
+				}
+			}
+			$this->criterias[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
+		}
 	}
 }
 
