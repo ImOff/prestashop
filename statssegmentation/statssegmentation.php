@@ -28,12 +28,12 @@ class StatsSegmentation extends Module
 			new None('newsletter # @'));
 		$this->criterias[] = new Criteria('language', 'Language(s)',
 			new Select('id_lang # (@)', 'lang', $this->l('All languages')));
-
 	}
 
 	public function install()
 	{
 		return (parent::install() &&
+			$this->registerHook('backOfficeHeader') && 
 			$this->registerHook('adminStatsModules'));
 	}
 
@@ -46,8 +46,6 @@ class StatsSegmentation extends Module
 
 	public function hookDisplayAdminStatsModules($params)
 	{
-		$search = 'SELECT * FROM customer WHERE ';
-
 		$criters = null;
 
 		foreach ($this->criterias as $criteria)
@@ -56,7 +54,6 @@ class StatsSegmentation extends Module
 		$this->context->smarty->assign(
 			array(
 				'my_module_name' => Configuration::get('MYMODULE_NAME'),
-				'my_module_date' => ModuleGraph::getDateBetween(),
 				'my_module_criterias' => $criters,
 				'my_module_search' => $search,
 			)
@@ -65,9 +62,9 @@ class StatsSegmentation extends Module
 		return $this->display(__FILE__, 'segmentation.tpl');
 	}
 
-	public function hookDisplayHeader()
+	public function hookBackOfficeHeader($params)
 	{
-		$this->context->controller->addCSS($this->_path.'css/segmentation.css', 'all');
+		return $this->context->controller->addCSS($this->_path.'css/segmentation.css');
 	}
 }
 
