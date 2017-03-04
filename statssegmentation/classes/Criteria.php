@@ -27,11 +27,11 @@ class Criteria
 			'<td>' . $this->description . '</td>' .
 			'<td><div>' .
 			'<label class="isnot">' .
-				'<input type="checkbox" class="radio" value="0" name="' . $this->name . '[1][]">' .
+				'<input type="checkbox" class="radio" value="0" name="' . $this->name . '">' .
 				'<span>Is</span>' .
 			'</label>' .
 			'<label class="isnot">' .
-				'<input type="checkbox" class="radio" value="1" name="' . $this->name . '[1][]">' .
+				'<input type="checkbox" class="radio" value="1" name="' . $this->name . '">' .
 				'<span>Is not</span>' .
 			'</label>' .
 			'</td></div>' .
@@ -39,5 +39,17 @@ class Criteria
 			'</tr>';
 
 		return $html;
+	}
+
+	function isEnable()
+	{
+		return (Tools::getValue($this->name) != null ? true : false);
+	}
+
+	function isOn()
+	{
+		if (!$this->isEnable())
+			throw "Criteria is not enabled !";
+		return (Tools::getValue($this->name) == '0' ? true : false);
 	}
 }

@@ -50,6 +50,22 @@ class StatsSegmentation extends Module
 	{
 		$profile_html = null;
 
+		if (Tools::isSubmit('search'))
+		{
+			foreach ($this->profile as $criteria)
+			{
+				if ($criteria->isEnable())
+				{
+					if ($criteria->isOn())
+						echo 'Critère on';
+					else
+						echo 'Critère off';
+				}
+				else
+					echo 'Critère desactivé';
+			}
+		}
+
 		foreach ($this->profile as $criteria)
 			$profile_html[] = $criteria->getHtml();
 
