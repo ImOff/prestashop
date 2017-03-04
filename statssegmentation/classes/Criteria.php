@@ -12,27 +12,29 @@ class Criteria
 
 	private $type = null;
 
-	function __construct($name = null, $description = null, $type = null)
+	private $switchs = null;
+
+	function __construct($name = null, $description = null, $type = null, $switchs = null)
 	{
 		$this->name = $name;
 		$this->description = $description;
 		$this->type = $type;
+		$this->switchs = $switchs;
 	}
 
 	function getHtml()
 	{
 		$html = null;
-
 		$html .= '<tr>' .
 			'<td>' . $this->description . '</td>' .
 			'<td><div>' .
 			'<label class="isnot">' .
 				'<input type="checkbox" class="radio" value="0" name="' . $this->name . '">' .
-				'<span>Is</span>' .
+				'<span>' . $this->switchs[0] . '</span>' .
 			'</label>' .
 			'<label class="isnot">' .
 				'<input type="checkbox" class="radio" value="1" name="' . $this->name . '">' .
-				'<span>Is not</span>' .
+				'<span>' . $this->switchs[1] . '</span>' .
 			'</label>' .
 			'</td></div>';
 		if (isset($this->type))
@@ -90,5 +92,17 @@ class Criteria
 	{
 		$this->type = $type;
 		return $this;
+	}
+
+	function getSwitchs()
+	{
+		return $this->switchs;
+	}
+
+	function setSwitchs($switch1, $switch2)
+	{
+		$this->switchs[] = $switch1;
+		$this->switchs[] = $switch2;
+
 	}
 }
