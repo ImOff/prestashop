@@ -86,6 +86,9 @@ class StatsSegmentation extends Module
 					case 'switch':
 						array_push($this->switch, $value1);
 						break;
+					case 'categorie':
+						$this->categorie = $value1;
+						break;
 					case 'type' :
 						foreach ($value1 as $key2 => $value2) {
 							switch ($key2) {
