@@ -25,6 +25,7 @@
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Groupe Client</description>
+		<canonical>group</canonical>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
 		<type>
@@ -32,12 +33,14 @@
 			<nameTable>group_lang</nameTable>
 			<column>name</column>
 			<placeholder>All group</placeholder>
-			<query>id_group # (@)</query>
+			<query>id_customer # (SELECT id_customer FROM ps_customer_group WHERE id_group IN (@))</query>
+			<queryTable>SELECT id_group,name FROM id_group where id_lang = @ AND id_customer = @</queryTable>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Langue</description>
+		<canonical>lang</canonical>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
 		<type>
@@ -51,6 +54,7 @@
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Devise</description>
+		<canonical>device</canonical>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
 		<type>
@@ -58,11 +62,13 @@
 			<nameTable>currency</nameTable>
 			<column>name</column>
 			<placeholder>All currencies</placeholder>
+			<query>id_shop # (SELECT id_shop FROM ps_currency_shop WHERE id_currency IN (@))</query>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Country</description>
+		<canonical>country</canonical>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
 		<type>
@@ -70,6 +76,7 @@
 			<nameTable>country_lang</nameTable>
 			<column>name</column>
 			<placeholder>All countries</placeholder>
+			<query>id_customer in (select id_customer from ps_orders where id_address_delivery in (select id_address from ps_address where id_country # (@)))</query>
 		</type>
 	</Criters>
 	<Criters>
@@ -93,14 +100,15 @@
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Sexe</description>
+		<canonical>sexe</canonical>
 		<switch>Inclus</switch>
 		<switch>Exclus</switch>
 		<type>
 			<name>select</name>
-			<nameTable>t</nameTable>
+			<nameTable>gender_lang</nameTable>
 			<column>b</column>
 			<placeholder>All sexes</placeholder>
-			<query>gender # (@)</query>
+			<query>id_gender # (@)</query>
 		</type>
 	</Criters>
 	<Criters>
