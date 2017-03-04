@@ -6,9 +6,56 @@
 
 	<form method="post">
 
-		{foreach $my_module_criterias as $criteria}
-			{$criteria}
-		{/foreach}
+    <div class="roll-container">
+        <div class="profile" onclick="displayDiv('profile')">
+            <p>Profile</p>
+        </div>
+        <div class="hidden-div" id="profile">
+						<table>
+							{$segmentation_profile_criterias}
+						</table>
+        </div>
+    </div>
+
+    <div class="roll-container2">
+        <div class="behaviour" onclick="displayDiv('behaviour')">
+            <p>Behaviour</p>
+        </div>
+        <div class="hidden-div under-hidden" id="behaviour">
+            <div onclick="displayDiv('activity')" class="category-border">
+                <p>Activity</p>
+            </div>
+                <div id="activity" class="detail-under-div">
+                    <table>
+											{$segmentation_activity_criterias}
+                    </table>
+                </div>
+            <div onclick="displayDiv('purchases')" class="category-border">
+                <p>Specific purchases & amounts</p>
+            </div>
+                <div id="purchases" class="detail-under-div">
+                    <table>
+											{$segmentation_purchases_criterias}
+                    </table>
+                </div>
+            <div onclick="displayDiv('abandoned')" class="category-border">
+                <p>Abandoned carts</p>
+            </div>
+                <div id="abandoned" class="detail-under-div">
+                    <table>
+											{$segmentation_abandoned_criterias}
+                    </table>
+                </div>
+            <div onclick="displayDiv('habits')" class="category-border">
+                <p>Habits</p>
+            </div>
+                <div id="habits" class="detail-under-div">
+                    <table>
+											{$segmentation_habits_criterias}
+                    </table>
+                </div>
+        </div>
+    </div>
 
 		<div class="search-container">
 			<button class="button-search" type="submit" name="search">Search</button>
