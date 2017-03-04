@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?> 
 <bloc>
-	<Profile>
+	<Criters>
+		<categorie>Profil</categorie>
 		<canonical>newsletter</canonical>
 		<description>Newsletter (if enabled)</description>
 		<switch>Oui</switch>
@@ -8,16 +9,18 @@
 		<type>
 			<name>none</name>
 		</type>
-	</Profile>
-	<Profile>
+	</Criters>
+	<Criters>
+		<categorie>Profil</categorie>
 		<description>Opt-in</description>
 		<switch>Oui</switch>
 		<switch>Non</switch>
 		<type>
 			<name>none</name>
 		</type>
-	</Profile>
-	<Profile>
+	</Criters>
+	<Criters>
+		<categorie>Profil</categorie>
 		<description>Groupe Client</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -27,8 +30,9 @@
 			<column>name</column>
 			<placeholder>All group</placeholder>
 		</type>
-	</Profile>
-	<Profile>
+	</Criters>
+	<Criters>
+		<categorie>Profil</categorie>
 		<description>Langue</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -38,8 +42,9 @@
 			<column>id_lang</column>
 			<placeholder>All languages</placeholder>
 		</type>
-	</Profile>
-	<Profile>
+	</Criters>
+	<Criters>
+		<categorie>Profil</categorie>
 		<description>Devise</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -49,8 +54,9 @@
 			<column>name</column>
 			<placeholder>All currencies</placeholder>
 		</type>
-	</Profile>
-	<Profile>
+	</Criters>
+	<Criters>
+		<categorie>Profil</categorie>
 		<description>Country</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -60,8 +66,9 @@
 			<column>name</column>
 			<placeholder>All countries</placeholder>
 		</type>
-	</Profile>
-	<Profile>
+	</Criters>
+	<Criters>
+		<categorie>Profil</categorie>
 		<description>Age</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -77,8 +84,9 @@
 			<column>birthday</column>
 			<placeholder>Max</placeholder>
 		</type>
-	</Profile>
-	<Profile>
+	</Criters>
+	<Criters>
+		<categorie>Profil</categorie>
 		<description>Sexe</description>
 		<switch>Inclus</switch>
 		<switch>Exclus</switch>
@@ -88,8 +96,9 @@
 			<column>b</column>
 			<placeholder>All sexes</placeholder>
 		</type>
-	</Profile>
-	<Drop>
+	</Criters>
+	<Criters>
+		<categorie>Abandoned</categorie>
 		<description>Categorie</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -99,8 +108,9 @@
 			<column></column>
 			<placeholder>All Categories</placeholder>
 		</type>
-	</Drop>
-	<Drop>
+	</Criters>
+	<Criters>
+		<categorie>Abandoned</categorie>
 		<description>Marque</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -108,8 +118,9 @@
 			<name>select</name>
 			<nameTable>Marque</nameTable>
 		</type>
-	</Drop>
-	<Drop>
+	</Criters>
+	<Criters>
+		<categorie>Abandoned</categorie>
 		<description>Produit</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -117,8 +128,9 @@
 			<name>select</name>
 			<nameTable>Produit</nameTable>
 		</type>
-	</Drop>
-	<Drop>
+	</Criters>
+	<Criters>
+		<categorie>Abandoned</categorie>
 		<description>Montant</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -130,8 +142,9 @@
 			<name>text</name>
 			<nameTable>Montant</nameTable>
 		</type>
-	</Drop>
-	<Activity>
+	</Criters>
+	<Criters>
+		<categorie>Activity</categorie>
 		<description>No Command</description>
 		<switch>Avant</switch>
 		<switch>Après</switch>
@@ -139,8 +152,9 @@
 			<name>date</name>
 			<nameTable>No Command</nameTable>
 		</type>
-	</Activity>
-	<Activity>
+	</Criters>
+	<Criters>
+		<categorie>Activity</categorie>
 		<description>Nombre de Commande</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -152,8 +166,9 @@
 			<name>number</name>
 			<nameTable>Montant</nameTable>
 		</type>	
-	</Activity>
-	<Buy>
+	</Criters>
+	<Criters>
+		<categorie>Purchases</categorie>
 		<description>Categorie</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -161,8 +176,9 @@
 			<name>select</name>
 			<nameTable>Categorie</nameTable>
 		</type>
-	</Buy>
-	<Buy>
+	</Criters>
+	<Criters>
+		<categorie>Purchases</categorie>
 		<description>Marque</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -170,8 +186,9 @@
 			<name>select</name>
 			<nameTable>Marque</nameTable>
 		</type>
-	</Buy>
-	<Buy>
+	</Criters>
+	<Criters>
+		<categorie>Purchases</categorie>
 		<description>Produit</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -179,8 +196,9 @@
 			<name>select</name>
 			<nameTable>Produit</nameTable>
 		</type>
-	</Buy>
-	<Buy>
+	</Criters>
+	<Criters>
+		<categorie>Purchases</categorie>
 		<description>Montant</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -192,8 +210,9 @@
 			<name>text</name>
 			<nameTable>Montant</nameTable>
 		</type>
-	</Buy>
-	<Habits>
+	</Criters>
+	<Criters>
+		<categorie>Habits</categorie>
 		<description>Paiement</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -201,8 +220,9 @@
 			<name>select</name>
 			<nameTable>Paiement</nameTable>
 		</type>
-	</Habits>
-	<Habits>
+	</Criters>
+	<Criters>
+		<categorie>Habits</categorie>
 		<description>Livraison type</description>
 		<switch>Inclus</switch>
 		<switch>Exclu</switch>
@@ -210,5 +230,5 @@
 			<name>select</name>
 			<nameTable>Type Delivery</nameTable>
 		</type>
-	</Habits>
+	</Criters>
 </bloc>
