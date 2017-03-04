@@ -6,7 +6,7 @@ require_once('classes/CriteriaGenerator.php');
 
 class StatsSegmentation extends Module
 {
-	private $criterias = null;
+	private $profile = null;
 
 	public function __construct()
 	{
@@ -24,9 +24,9 @@ class StatsSegmentation extends Module
 		$this->displayName = $this->l('Segmentation Module');
 		$this->description = $this->l('This is a simple module.');
 
-		$this->criterias[] = new Criteria('newsletter', 'Newsletter (if enabled)',
+		$this->profile[] = new Criteria('newsletter', 'Newsletter (if enabled)',
 			new None('newsletter # @'));
-		$this->criterias[] = new Criteria('language', 'Language(s)',
+		$this->profile[] = new Criteria('language', 'Language(s)',
 			new Select('id_lang # (@)', 'lang', $this->l('All languages')));
 
 		$this->parseXml('criteria.xml');
@@ -48,16 +48,14 @@ class StatsSegmentation extends Module
 
 	public function hookDisplayAdminStatsModules($params)
 	{
-		$criters = null;
+		$profile_html = null;
 
-		foreach ($this->criterias as $criteria)
-			$criters[] = $criteria->getHtml();
+		foreach ($this->profile as $criteria)
+			$profile_html[] = $criteria->getHtml();
 
 		$this->context->smarty->assign(
 			array(
-				'my_module_name' => Configuration::get('MYMODULE_NAME'),
-				'my_module_criterias' => $criters,
-				'my_module_search' => $search,
+				'segmentation_profile_criterias' => $profile_html,
 			)
 		);
 

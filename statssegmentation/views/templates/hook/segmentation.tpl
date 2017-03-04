@@ -12,7 +12,9 @@
         </div>
         <div class="hidden-div" id="profile">
 						<table>
-							{$segmentation_profile_criterias}
+							{foreach $segmentation_profile_criterias as $criterias}
+								{$criterias}
+							{/foreach}
 						</table>
         </div>
     </div>
@@ -62,7 +64,7 @@
 		</div>
 	</form>
 
-	<p>{$my_module_search} results available with the selected criteria.</p>
+	<p>{$segmentation_result} results available with the selected criteria.</p>
 </div>
 
 <script type="text/javascript">

@@ -23,10 +23,20 @@ class Criteria
 	{
 		$html = null;
 
-		$html .= '<label>' . $this->description . '</label>';
-		$html .= '<input type="checkbox" name="' . $this->name . '_on">';
-		$html .= '<input type="checkbox" name="' . $this->name . '_off">';
-		$html .= $this->type->getInput($this->name) . '<br>';
+		$html .= '<tr>' .
+			'<td>' . $this->description . '</td>' .
+			'<td><div>' .
+			'<label class="isnot">' .
+				'<input type="checkbox" class="radio" value="0" name="' . $this->name . '[1][]">' .
+				'<span>Is</span>' .
+			'</label>' .
+			'<label class="isnot">' .
+				'<input type="checkbox" class="radio" value="1" name="' . $this->name . '[1][]">' .
+				'<span>Is not</span>' .
+			'</label>' .
+			'</td></div>' .
+			$this->type->getInput($this->name) .
+			'</tr>';
 
 		return $html;
 	}
