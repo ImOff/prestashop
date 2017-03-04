@@ -6,7 +6,7 @@
 		<switch>Oui</switch>
 		<switch>Non</switch>
 		<type>
-			<name>false</name>
+			<name>none</name>
 		</type>
 	</Profile>
 	<Profile>
@@ -14,7 +14,7 @@
 		<switch>Oui</switch>
 		<switch>Non</switch>
 		<type>
-			<name>false</name>
+			<name>none</name>
 		</type>
 	</Profile>
 	<Profile>
@@ -23,8 +23,8 @@
 		<switch>Exclu</switch>
 		<type>
 			<name>select</name>
-			<nameTable>group</nameTable>
-			<column>id_group</column>
+			<nameTable>group_lang</nameTable>
+			<column>name</column>
 			<placeholder>All group</placeholder>
 		</type>
 	</Profile>
@@ -76,6 +76,17 @@
 			<nameTable>customer</nameTable>
 			<column>birthday</column>
 			<placeholder>Max</placeholder>
+		</type>
+	</Profile>
+	<Profile>
+		<description>Sexe</description>
+		<switch>Inclus</switch>
+		<switch>Exclus</switch>
+		<type>
+			<name>select</name>
+			<nameTable>t</nameTable>
+			<column>b</column>
+			<placeholder>All sexes</placeholder>
 		</type>
 	</Profile>
 	<Drop>
