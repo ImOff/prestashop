@@ -77,6 +77,8 @@ class StatsSegmentation extends Module
 			foreach ($value as $key1 => $value1) {
 				$isSelect = "";
 				switch ($key1) {
+					case 'categorie' :
+						$this->categorie = $value1;
 					case 'canonical':
 						$this->canonical = $value1;
 						break;
@@ -111,7 +113,15 @@ class StatsSegmentation extends Module
 						break;
 				}
 			}
-			$this->criterias[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
+			switch ($this->categorie) {
+				case 'Profil':
+					$this->profile[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
+					break;
+				
+				default:
+					# code...
+					break;
+			}
 		}
 	}
 }
