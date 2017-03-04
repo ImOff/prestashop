@@ -25,7 +25,6 @@ class Criteria
 	function getHtml()
 	{
 		$html = null;
-		print_r($this->switchs);
 		$html .= '<tr>' .
 			'<td>' . $this->description . '</td>' .
 			'<td><div>' .
