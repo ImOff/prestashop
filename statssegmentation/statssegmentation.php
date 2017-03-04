@@ -70,6 +70,7 @@ class StatsSegmentation extends Module
 			$purchases_html[] = $criteria->getHtml();
 		foreach ($this->habits as $criteria)
 			$habits_html[] = $criteria->getHtml();
+
 		$this->context->smarty->assign(
 			array(
 				'segmentation_profile_criterias' => $profile_html,
@@ -91,11 +92,19 @@ class StatsSegmentation extends Module
 		if (!count($criterias))
 			return ($query);
 
+		$first = false;
 		foreach ($criterias as $key => $criteria)
 		{
 			if ($criteria->isEnable())
 			{
-				$query .= ($key > 0) ? ' AND' : ' WHERE';
+				if (!$first)
+				{
+					$query .= ' WHERE';
+					$first = true;
+				}
+				else
+					$query .= ' AND';
+
 				$query .= ' ' . $criteria->getQuery();
 			}
 		}
@@ -126,7 +135,6 @@ class StatsSegmentation extends Module
 			{
 				case 'none':
 					$criteria->setType(new None($type->query->__toString()));
-					var_dump($criteria->getType());
 					break;
 				case 'select':
 					$criteria->setType(new Select($type->query->__toString(),

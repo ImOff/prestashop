@@ -51,31 +51,3 @@ class Select extends Type
 		return ($query);
 	}
 }
-
-
-/*
- <td>
-                            <div class="multiselect">
-                                <div class="selectBox" onclick="showCheckboxes('languages')">
-                                    <select>
-                                        <option>Languages</option>
-                                    </select>
-                                    <div class="overSelect"></div>
-                                </div>
-                                <div id="languages" class="checkboxes">
-                                        <label for="one">
-                                            <input type="checkbox" id="one" /><span>French</span>
-                                        </label>
-                                        <label for="two">
-                                            <input type="checkbox" id="two" /><span>English</span>
-                                        </label>
-                                        <label for="three">
-                                            <input type="checkbox" id="three" /><span>Spanish</span>
-                                        </label>
-                                        <label for="four">
-                                            <input type="checkbox" id="four" /><span>Japanese</span>
-                                        </label>
-                                </div>
-                            </div>
-                        </td>
-*/

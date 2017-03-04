@@ -32,6 +32,7 @@
 			<nameTable>group_lang</nameTable>
 			<column>name</column>
 			<placeholder>All group</placeholder>
+			<query>id_group # (@)</query>
 		</type>
 	</Criters>
 	<Criters>
@@ -44,6 +45,7 @@
 			<nameTable>lang</nameTable>
 			<column>id_lang</column>
 			<placeholder>All languages</placeholder>
+			<query>id_lang # (@)</query>
 		</type>
 	</Criters>
 	<Criters>
@@ -98,6 +100,7 @@
 			<nameTable>t</nameTable>
 			<column>b</column>
 			<placeholder>All sexes</placeholder>
+			<query>gender # (@)</query>
 		</type>
 	</Criters>
 	<Criters>
