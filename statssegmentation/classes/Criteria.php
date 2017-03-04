@@ -35,7 +35,7 @@ class Criteria
 				'<span>Is not</span>' .
 			'</label>' .
 			'</td></div>' .
-			$this->type->getInput($this->name) .
+			$this->type->getInput($this->description) .
 			'</tr>';
 
 		return $html;

@@ -24,11 +24,6 @@ class StatsSegmentation extends Module
 		$this->displayName = $this->l('Segmentation Module');
 		$this->description = $this->l('This is a simple module.');
 
-		$this->profile[] = new Criteria('newsletter', 'Newsletter (if enabled)',
-			new None('newsletter # (1)'));
-		$this->profile[] = new Criteria('optin', 'Opt in (if enabled)',
-			new None('optin # (1)'));
-
 		$this->parseXml('criteria.xml');
 	}
 
@@ -100,6 +95,7 @@ class StatsSegmentation extends Module
 		$criter = new CriteriaGenerator();
 		$pwd = getcwd();
 		$file = file_get_contents($pwd . '/../../..' . $this->_path . $fileName);
+
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $key => $value) {
 			$this->switch = array();

@@ -14,8 +14,11 @@ class Text extends Type {
 
 	function getInput ($name) {
 		$html = null;
+		$html .= '<td><div class="from"><span>From</span>';
 		$html .= '<input type="number" name="" min="1" max="99" value="20">';
-		$html .= '<input type="number" name="" min="1" max="99" value="20">';
+		$html .= '</div><div class="to"><span>To</span>';
+		$html .= '<input type="number" name="" min="1" max="99" value="20"></div></td>';
+
 		return $html;
 	}
 
