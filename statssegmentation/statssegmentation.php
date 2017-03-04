@@ -111,7 +111,7 @@ class StatsSegmentation extends Module
 	public function parseXml ($fileName) {
 		$criter = new CriteriaGenerator();
 		$pwd = getcwd();
-		$file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
+		$file = file_get_contents($pwd . '/../../../' . $this->_path . $fileName);
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $data_criteria) {
 
@@ -119,8 +119,8 @@ class StatsSegmentation extends Module
 			$criteria
 				->setName($data_criteria->canonical->__toString())
 				->setDescription($data_criteria->description->__toString())
+				->setSwitchs($data_criteria->switch1->__toString(), $data_criteria->switch2->__toString())
 				;
-
 			$type = $data_criteria->type;
 			switch ($type->name)
 			{
