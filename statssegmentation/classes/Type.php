@@ -10,4 +10,5 @@ abstract class Type
 	}
 
 	abstract function getInput($name);
+	abstract function getQuery($name, $operator = true);
 }

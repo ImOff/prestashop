@@ -25,9 +25,7 @@ class StatsSegmentation extends Module
 		$this->description = $this->l('This is a simple module.');
 
 		$this->profile[] = new Criteria('newsletter', 'Newsletter (if enabled)',
-			new None('newsletter # @'));
-		$this->profile[] = new Criteria('language', 'Language(s)',
-			new Select('id_lang # (@)', 'lang', $this->l('All languages')));
+			new None('newsletter # (1)'));
 
 		$this->parseXml('criteria.xml');
 	}
@@ -56,13 +54,8 @@ class StatsSegmentation extends Module
 			{
 				if ($criteria->isEnable())
 				{
-					if ($criteria->isOn())
-						echo 'Critère on';
-					else
-						echo 'Critère off';
+					echo $criteria->getQuery();
 				}
-				else
-					echo 'Critère desactivé';
 			}
 		}
 

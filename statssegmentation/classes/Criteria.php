@@ -52,4 +52,9 @@ class Criteria
 			throw "Criteria is not enabled !";
 		return (Tools::getValue($this->name) == '0' ? true : false);
 	}
+
+	function getQuery($values = array())
+	{
+		return ($this->type->getQuery($this->name, $this->isOn()));
+	}
 }
