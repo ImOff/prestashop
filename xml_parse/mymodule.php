@@ -112,6 +112,23 @@ class Criteria
 	}
 }
 
+class CriteriaGenerator {
+	function __construct () {
+
+	}
+	function Create ($canonical, $desc, $nameTable, $placeholder, $isSelect, $column) {
+		switch ($isSelect) {
+			case 'none':
+				return new Criteria($canonical, $desc, new None($canonical . ' # @'));
+			case 'text' :
+				return new Criteria($canonical, $desc, new Text($canonical . ' # @', $nameTable, $placeholder));
+			default:
+				return new Criteria($canonical, $desc, new Select($column . ' # (@)', $nameTable, $placeholder));
+		}
+	}
+
+}
+
 class MyModule extends Module
 {
 	private $criterias = null;
@@ -139,6 +156,12 @@ class MyModule extends Module
 			new None('newsletter # @'));
 		$this->criterias[] = new Criteria('language', 'Language(s)',
 			new Select('id_lang # (@)', 'lang', $this->l('All languages')));
+
+		$this->parseXml();
+	}
+
+	public function parseXml () {
+		$criter = new CriteriaGenerator();
 		$pwd = getcwd();
 		$file = file_get_contents($pwd . '/../../..' . $this->_path . 'criteria.xml');
 		$this->xml = simplexml_load_string($file);
@@ -146,42 +169,40 @@ class MyModule extends Module
 			$this->switch = array();
 			foreach ($value as $key1 => $value1) {
 				$isSelect = "";
-				if ($key1 == "canonical")
-					$this->canonical = $value1;
-				elseif ($key1 == "description")
-					$this->desc = $value1;
-				elseif ($key1 == "switch") {
-					array_push($this->switch, $value1);
-				} elseif ($key1 == "type") {
-					foreach ($value1 as $key2 => $value2) {
-						if ($key2 == "name" && $value2 == "false")
-							$isSelect = "none";
-						elseif ($key2 == "name" && $value2 == "text")
-							$isSelect = "text";
-						elseif ($key2 == "name")
-							$this->option = $value2;
-						elseif ($key2 == "nameTable")
-							$this->nameTable = $value2;
-						elseif ($key2 == "column")
-							$this->column = $value2;
-						elseif ($key2 == "placeholder")
-							$this->placeholder = $value2;
-					}
+				switch ($key1) {
+					case 'canonical':
+						$this->canonical = $value1;
+						break;
+					case 'description':
+						$this->desc = $value1;
+						break;
+					case 'switch':
+						array_push($this->switch, $value1);
+						break;
+					case 'type' :
+						foreach ($value1 as $key2 => $value2) {
+							switch ($key2) {
+								case 'name' :
+									$this->option = $value2;
+									break;
+								case 'nameTable':
+									$this->nameTable = $value2;
+									break;
+								case 'column':
+									$this->column = $value2;
+								case 'placeholder':
+									$this->placeholder = $value2;
+									break;
+								default:
+									break;
+							}
+						}
+					default:
+						break;
 				}
 			}
-			if ($isSelect == "none")
-				$this->criterias[] = new Criteria($this->canonical, $this->desc, new None($this->canonical . ' # @'));
-			elseif ($isSelect == "text") {
-				print ("selct text");
-				$this->criterias[] = new Criteria($this->canonical, $this->desc, new Text($this->canonical . ' # @', $this->nameTable, $this->l($this->placeholder)));
-			}
-			else
-				$this->criterias[] = new Criteria($this->canonical, $this->desc, new Select($this->column . ' # (@)', $this->nameTable, $this->l($this->placeholder)));
-			// break;
+			$this->criterias[] = $criter->Create($this->canonical, $this->desc, $this->nameTable, $this->l($this->placeholder), $this->option, $this->column);
 		}
-		print ($this->canonical . " ");
-		print ($this->desc . " ");
-		print_r($this->switch);
 	}
 
 	public function install()
