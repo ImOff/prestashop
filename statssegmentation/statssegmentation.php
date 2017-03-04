@@ -25,9 +25,9 @@ class StatsSegmentation extends Module
 		$this->description = $this->l('This is a simple module.');
 
 		$this->profile[] = new Criteria('newsletter', 'Newsletter (if enabled)',
-			new None('newsletter # @'));
-		$this->profile[] = new Criteria('language', 'Language(s)',
-			new Select('id_lang # (@)', 'lang', $this->l('All languages')));
+			new None('newsletter # (1)'));
+		$this->profile[] = new Criteria('optin', 'Opt in (if enabled)',
+			new None('optin # (1)'));
 
 		$this->parseXml('criteria.xml');
 	}
@@ -48,18 +48,47 @@ class StatsSegmentation extends Module
 
 	public function hookDisplayAdminStatsModules($params)
 	{
+		$result = 0;
 		$profile_html = null;
+
+		if (Tools::isSubmit('search'))
+		{
+			$sql = $this->getCriteriaQuery(array_merge($this->profile));
+			$customers = Db::getInstance()->ExecuteS($sql);
+
+			$result = count($customers);
+		}
 
 		foreach ($this->profile as $criteria)
 			$profile_html[] = $criteria->getHtml();
 
 		$this->context->smarty->assign(
 			array(
-				'segmentation_profile_criterias' => $profile_html,
+				'segmentation_profile_criterias'	=> $profile_html,
+				'segmentation_result'							=> $result,
 			)
 		);
 
 		return $this->display(__FILE__, 'segmentation.tpl');
+	}
+
+	public function getCriteriaQuery($criterias)
+	{
+		$query = 'SELECT * FROM '._DB_PREFIX_.'customer';
+
+		if (!count($criterias))
+			return ($query);
+
+		foreach ($criterias as $key => $criteria)
+		{
+			if ($criteria->isEnable())
+			{
+				$query .= ($key > 0) ? ' AND' : ' WHERE';
+				$query .= ' ' . $criteria->getQuery();
+			}
+		}
+
+		return ($query);
 	}
 
 	public function hookBackOfficeHeader($params)

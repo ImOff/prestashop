@@ -13,5 +13,14 @@ class None extends Type
 	{
 		return null;
 	}
-}
 
+	function getQuery($name, $operator = true)
+	{
+		if ($operator)
+			$query = str_replace("#", "IN", $this->query);
+		else
+			$query = str_replace("#", "NOT IN", $this->query);
+
+		return ($query);
+	}
+}

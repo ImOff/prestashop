@@ -18,4 +18,9 @@ class Text extends Type {
 		$html .= '<input type="number" name="" min="1" max="99" value="20">';
 		return $html;
 	}
+
+	function getQuery($name, $operator = true)
+	{
+		return ($this->query);
+	}
 }

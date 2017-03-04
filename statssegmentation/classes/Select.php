@@ -39,4 +39,9 @@ class Select extends Type
 
 		return $html;
 	}
+
+	function getQuery($name, $operator = true)
+	{
+		return ($query);
+	}
 }
