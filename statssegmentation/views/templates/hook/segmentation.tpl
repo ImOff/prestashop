@@ -75,7 +75,43 @@
 	<p>{$segmentation_result} results available with the selected criteria.</p>
 
 	<p style="background-color: #CEF6D8;">{$segmentation_query}</p>
+
+	<table>
+		<tr>
+			<th>First Name</th>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Email</th>
+			<th>Adresse 1</th>
+			<th>Adresse 2</th>
+			<th>City</th>
+			<th>Poste Code/State</th>
+			<th>Country</th>
+			<th>Phone Number</th>
+			<th>Language</th>
+			<th>Age</th>
+		</tr>
+		<tr>
+			<td>{$segmentation_customers[0]['firstname']}</td>
+			<td>{$segmentation_customers[0]['lastname']}</td>
+			<td>{$segmentation_customers[0]['id_gender']}</td>
+			<td>{$segmentation_customers[0]['email']}</td>
+			<td>Adresse 1</td>
+			<td>Adresse 2</td>
+			<td>Ville</td>
+			<td>Code postal</td>
+			<td>Pays</td>
+			<td>Telephone</td>
+			<td>{$segmentation_customers[0]['id_lang']}</td>
+			<td>{$segmentation_customers[0]['birthday']}</td>
+		</tr>
+	</table>
+
+	<div><pre>{var_dump($segmentation_customers)}</div>
+
 </div>
+
+
 
 <script type="text/javascript">
 

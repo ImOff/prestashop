@@ -80,6 +80,7 @@ class StatsSegmentation extends Module
 				'segmentation_habits_criterias' => $habits_html,
 				'segmentation_result' => $result,
 				'segmentation_query' => $sql,
+				'segmentation_customers' => $customers,
 			)
 		);
 
