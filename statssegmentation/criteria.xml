@@ -118,7 +118,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Category</nameTable>
-			<column></column>
+			<tableQuery>SELECT ps_category_lang.name FROM ps_category_lang INNER JOIN ps_product ON ps_category_lang.id_category=ps_product.id_category_default Group by id_category_default</tableQuery>
+			<column>name</column>
 			<placeholder>All Categories</placeholder>
 		</type>
 	</Criters>
@@ -131,6 +132,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Brand</nameTable>
+			<tableQuery>SELECT name FROM `ps_manufacturer`</tableQuery>
+			<column>name</column>
 			<placeholder>All brands</placeholder>
 		</type>
 	</Criters>
@@ -143,6 +146,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Product</nameTable>
+			<tableQuery>SELECT name FROM `ps_product_lang` where id_lang=1</tableQuery>
+			<column>name</column>
 			<placeholder>All products</placeholder>
 		</type>
 	</Criters>
@@ -192,6 +197,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Category</nameTable>
+			<tableQuery>SELECT ps_category_lang.name FROM ps_category_lang INNER JOIN ps_product ON ps_category_lang.id_category=ps_product.id_category_default Group by id_category_default</tableQuery>
+			<column>name</column>
 			<placeholder>All categories</placeholder>
 		</type>
 	</Criters>
@@ -204,6 +211,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Brand</nameTable>
+			<tableQuery>SELECT name FROM `ps_manufacturer`</tableQuery>
+			<column>name</column>
 			<placeholder>All brands</placeholder>
 		</type>
 	</Criters>
@@ -216,6 +225,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Product</nameTable>
+			<tableQuery>SELECT name FROM `ps_product_lang` where id_lang=1</tableQuery>
+			<column>name</column>
 			<placeholder>All products</placeholder>
 		</type>
 	</Criters>
