@@ -107,6 +107,7 @@
 	<Criters>
 		<categorie>Abandoned</categorie>
 		<description>Categorie</description>
+		<canonical>abandoned_categorie</canonical>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
 		<type>
@@ -121,6 +122,7 @@
 		<description>Marque</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>abandoned_marque</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Marque</nameTable>
@@ -132,6 +134,7 @@
 		<description>Produit</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>abandoned_produit</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Produit</nameTable>
@@ -143,6 +146,7 @@
 		<description>Montant</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>abandoned_montant</canonical>
 		<type>
 			<name>text</name>
 			<nameTable>Montant</nameTable>
@@ -157,6 +161,7 @@
 		<description>No Command</description>
 		<switch1>Avant</switch1>
 		<switch2>Après</switch2>
+		<canonical>activity_no_cmd</canonical>
 		<type>
 			<name>date</name>
 			<nameTable>No Command</nameTable>
@@ -167,6 +172,7 @@
 		<description>Nombre de Commande</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>activity_nb_cmd</canonical>
 		<type>
 			<name>text</name>
 			<nameTable>Montant</nameTable>
@@ -177,6 +183,7 @@
 		<description>Categorie</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>purchases_categorie</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Categorie</nameTable>
@@ -188,6 +195,7 @@
 		<description>Marque</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>purchases_brand</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Marque</nameTable>
@@ -199,6 +207,7 @@
 		<description>Produit</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>purchases_produit</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Produit</nameTable>
@@ -210,6 +219,7 @@
 		<description>Montant</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>purchases_montant</canonical>
 		<type>
 			<name>text</name>
 			<nameTable>Montant</nameTable>
@@ -220,6 +230,7 @@
 		<description>Paiement</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>habits_payment</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Paiement</nameTable>
@@ -231,6 +242,7 @@
 		<description>Livraison type</description>
 		<switch1>Inclus</switch1>
 		<switch2>Exclu</switch2>
+		<canonical>habits_delivery_type</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Type Delivery</nameTable>
