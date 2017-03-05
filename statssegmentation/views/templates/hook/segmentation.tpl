@@ -70,6 +70,16 @@
 		<div class="search-container">
 			<button class="button-search" type="submit" name="search">Search</button>
 		</div>
+
+	<div class="option-buttons">
+		<div class="list">
+			Show list
+		</div>
+
+		<div class="csv" onclick="exportCSV()">
+	    	Export in CSV
+ 		</div><br><br>
+ 	</div>
 	</form>
 
 	<p>{$segmentation_result} results available with the selected criteria.</p>
@@ -111,9 +121,11 @@
 
 </div>
 
-
-
 <script type="text/javascript">
+
+var data = {$segmentation_customers};
+
+console.log(data);
 
 function displayDiv(div) {
 	if (document.getElementById(div).style.display == 'none') {
@@ -141,14 +153,23 @@ function showCheckboxes(name) {
 }
 
 function exportCSV() {
-	var data = [["name1", "city1", "some other info"], ["name2", "city2", "more info"]];
 	var csvContent = "data:text/csv;charset=utf-8,";
-	data.forEach(function(infoArray, index){
-			dataString = infoArray.join(",");
-			csvContent += index < data.length ? dataString+ "\n" : dataString;
-			})
+	data.forEach(function(index){
+		for(var i = 0; i < arguments.length; ++i)
+		{
+ 			data.push(arguments[i]);
+		}
+		var dataString = data.join(',');
+   		csvContent += index < data.length ? dataString+ "\n" : dataString;
+	});
+
 	var encodedUri = encodeURI(csvContent);
-	window.open(encodedUri);
+	var link = document.createElement("a");
+	link.setAttribute("href", encodedUri);
+	link.setAttribute("download", "customers_list.csv");
+	document.body.appendChild(link); // Required for FF
+
+	link.click(); // This will download the data file named "my_data.csv".
 }
 
 $("input:checkbox").on('click', function() {
