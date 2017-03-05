@@ -45,7 +45,7 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT name FROM `ps_lang`</tableQuery>
+			<tableQuery>SELECT id_lang as id, name FROM `ps_lang`</tableQuery>
 			<nameTable>lang</nameTable>
 			<column>name</column>
 			<placeholder>All languages</placeholder>
