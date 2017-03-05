@@ -133,9 +133,10 @@
 		<type>
 			<name>select</name>
 			<nameTable>Brand</nameTable>
-			<tableQuery>SELECT name FROM `ps_manufacturer`</tableQuery>
+			<tableQuery>SELECT id_manufacturer as id,name FROM `ps_manufacturer`</tableQuery>
 			<column>name</column>
 			<placeholder>All brands</placeholder>
+			<query>id_customer in (select id_customer from ps_cart where id_cart not in (select id_cart from ps_orders) and id_cart in (select id_cart from ps_cart_product where id_product in (select id_product from ps_product where id_manufacturer # (@))))</query>
 		</type>
 	</Criters>
 	<Criters>
