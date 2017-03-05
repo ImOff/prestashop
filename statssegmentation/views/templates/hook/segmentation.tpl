@@ -101,23 +101,21 @@
 			<th>Language</th>
 			<th>Age</th>
 		</tr>
-		{$i = 0}
 		{foreach $segmentation_customers as $customer}
 		<tr>
-			<td>{$segmentation_customers[$i]['firstname']}</td>
-			<td>{$segmentation_customers[$i]['lastname']}</td>
-			<td>{$segmentation_customers[$i]['gender']}</td>
-			<td>{$segmentation_customers[$i]['email']}</td>
-			<td>{$segmentation_customers[$i]['addr1']}</td>
-			<td>{$segmentation_customers[$i]['addr2']}</td>
-			<td>{$segmentation_customers[$i]['city']}</td>
-			<td>{$segmentation_customers[$i]['postcode']}</td>
-			<td>{$segmentation_customers[$i]['country']}</td>
-			<td>{$segmentation_customers[$i]['phone']}</td>
-			<td>{$segmentation_customers[$i]['id_lang']}</td>
-			<td>{$segmentation_customers[$i]['birthday']}</td>
+			<td>{$customer['firstname']}</td>
+			<td>{$customer['lastname']}</td>
+			<td>{$customer['gender']}</td>
+			<td>{$customer['email']}</td>
+			<td>{$customer['addr1']}</td>
+			<td>{$customer['addr2']}</td>
+			<td>{$customer['city']}</td>
+			<td>{$customer['postcode']}</td>
+			<td>{$customer['country']}</td>
+			<td>{$customer['phone']}</td>
+			<td>{$customer['id_lang']}</td>
+			<td>{$customer['birthday']}</td>
 		</tr>
-		{$i++}
 		{/foreach}
 	</table>
 
@@ -125,7 +123,7 @@
 
 <script type="text/javascript">
 
-var data = {$segmentation_customers};
+var data = {$segmentation_json};
 
 console.log(data);
 

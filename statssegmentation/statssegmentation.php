@@ -80,7 +80,8 @@ class StatsSegmentation extends Module
 				'segmentation_habits_criterias' => $habits_html,
 				'segmentation_result' => $result,
 				'segmentation_query' => $sql,
-				'segmentation_customers' => json_encode($customers, JSON_HEX_TAG),
+				'segmentation_json' => json_encode($customers, JSON_HEX_TAG),
+				'segmentation_customers' => $customers,
 			)
 		);
 
@@ -121,9 +122,6 @@ class StatsSegmentation extends Module
 	public function parseXml ($fileName) {
 		$criter = new CriteriaGenerator();
 		$pwd = getcwd();
-		//$file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
-		$file = file_get_contents($pwd . '/../..' . $this->_path . $fileName);
-		//$file = file_get_contents($pwd . '/../../../' . $this->_path . $fileName);
 		$file = file_get_contents("../modules/statssegmentation/" . $fileName);
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $data_criteria) {
