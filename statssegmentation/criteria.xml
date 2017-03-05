@@ -26,8 +26,8 @@
 		<categorie>Profil</categorie>
 		<description>Groupe Client</description>
 		<canonical>group</canonical>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>group_lang</nameTable>
@@ -41,8 +41,8 @@
 		<categorie>Profil</categorie>
 		<description>Langue</description>
 		<canonical>lang</canonical>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>lang</nameTable>
@@ -55,8 +55,8 @@
 		<categorie>Profil</categorie>
 		<description>Devise</description>
 		<canonical>device</canonical>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>currency</nameTable>
@@ -69,8 +69,8 @@
 		<categorie>Profil</categorie>
 		<description>Country</description>
 		<canonical>country</canonical>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>country_lang</nameTable>
@@ -94,8 +94,8 @@
 		<categorie>Profil</categorie>
 		<description>Sexe</description>
 		<canonical>sexe</canonical>
-		<switch>Inclus</switch>
-		<switch>Exclus</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclus</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>gender_lang</nameTable>
