@@ -123,6 +123,7 @@ class StatsSegmentation extends Module
 		$pwd = getcwd();
 		$file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
 		//$file = file_get_contents($pwd . '/../..' . $this->_path . $fileName);
+		//$file = file_get_contents($pwd . '/../../../' . $this->_path . $fileName);
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $data_criteria) {
 
@@ -140,8 +141,11 @@ class StatsSegmentation extends Module
 					break;
 				case 'select':
 					$criteria->setType(new Select($type->query->__toString(),
+						$type->tableQuery->__toString(),
 						$type->nameTable->__toString(),
-						$type->placeholder->__toString()));
+						$type->placeholder->__toString(),
+						null,
+						$type->column->__toString()));
 					break;
 				case 'text':
 					$criteria->setType(new Text($type->query->__toString(),

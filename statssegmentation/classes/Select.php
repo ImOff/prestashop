@@ -10,27 +10,31 @@ class Select extends Type
 
 	private $labelForAll = null;
 
-	function __construct($query, $tableName, $labelForAll, $parameters = ['1', '5'])
+	private $column = null;
+
+	function __construct($query, $tableQuery,$tableName, $labelForAll, $parameters = ['1', '5'],$column)
+
 	{
 		parent::__construct($query);
 		$this->tableName = $tableName;
 		$this->labelForAll = $labelForAll;
-
-		$sql = new DbQuery();
-		$sql->select('*')->from(pSQL($tableName));
-
+		$this->column = $column;
+		// $sql = new DbQuery();
+		// $sql->select('*')->from(pSQL($tableName));
+		$sql = $tableQuery;
 		if ($results = Db::getInstance()->ExecuteS($sql))
 		{
 			$this->list = array();
-			foreach ($results as $row)
-				$this->list[] = array('id' => $row['id_' . $tableName], 'name' => $row['name']);
+			foreach ($results as $row) {
+				$this->list[] = array('id' => $row['id_' . $tableName], 'name' => $row[$this->column]);
+			}
 		}
 	}
 
 	function getInput($name)
 	{
 		$html = null;
-
+		var_dump ($name);
 		$html .= '<td><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(\'' . $this->tableName . '\')">';
 		$html .= '<select name="s_' . $name . '"><option value="0">' . $this->labelForAll . '</option></select>';
 		$html .= '<div class="overSelect"></div></div>';
