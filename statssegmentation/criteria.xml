@@ -122,6 +122,7 @@
 			<tableQuery>SELECT id_category as id,ps_category_lang.name FROM ps_category_lang INNER JOIN ps_product ON ps_category_lang.id_category=ps_product.id_category_default Group by id_category_default</tableQuery>
 			<column>name</column>
 			<placeholder>All Categories</placeholder>
+			<query>id_customer in (select id_customer from ps_cart where id_cart not in (select id_cart from ps_orders) and id_cart in (select id_cart from ps_cart_product where id_product in (select id_product from ps_product where id_category_default # (@))))</query>
 		</type>
 	</Criters>
 	<Criters>
