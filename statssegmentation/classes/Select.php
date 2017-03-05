@@ -24,7 +24,7 @@ class Select extends Type
 		{
 			$this->list = array();
 			foreach ($results as $row) {
-				$this->list[] = array('id' => $row['id_' . $tableName], 'name' => $row[$this->column]);
+				$this->list[] = array('id' => $row['id'], 'name' => $row[$this->column]);
 			}
 		}
 	}
@@ -56,17 +56,21 @@ class Select extends Type
 		else
 			$query = str_replace("#", "NOT IN", $this->query);
 
-		for ($i = 0; $i < count($this->list); $i++)
+		$i = 0;
+		foreach ($this->list as $element)
 		{
-			if (Tools::getValue($i . "_" . $this->tableName))
-				$values[] = $i + 1;
+			if (Tools::getValue($i++ . "_" . $this->tableName))
+			{
+				$values[] = (int)$element['id'];
+			}
 		}
 
 		if (!count($values))
 		{
-			for ($i = 0; $i < count($this->list); $i++)
-				$values[] = $i + 1;
+			foreach ($this->list as $element)
+					$values[] = (int)$element['id'];
 		}
+
 		$query = str_replace("@", implode(",", $values), $query);
 
 		return ($query);
