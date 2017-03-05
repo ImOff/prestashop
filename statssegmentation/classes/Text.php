@@ -32,6 +32,9 @@ class Text extends Type {
 		$from = (int)Tools::getValue($name . '_from');
 		$to = (int)Tools::getValue($name . '_to');
 
+		$query = preg_replace("/@{1}/", $from, $query, 1);
+		$query = preg_replace("/@{1}/", $to, $query, 1);
+
 		return $query;
 	}
 }
