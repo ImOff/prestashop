@@ -80,7 +80,7 @@ class StatsSegmentation extends Module
 				'segmentation_habits_criterias' => $habits_html,
 				'segmentation_result' => $result,
 				'segmentation_query' => $sql,
-				'segmentation_customers' => $customers,
+				'segmentation_customers' => json_encode($customers, JSON_HEX_TAG),
 			)
 		);
 
@@ -124,6 +124,7 @@ class StatsSegmentation extends Module
 		//$file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
 		$file = file_get_contents($pwd . '/../..' . $this->_path . $fileName);
 		//$file = file_get_contents($pwd . '/../../../' . $this->_path . $fileName);
+		$file = file_get_contents("../modules/statssegmentation/" . $fileName);
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $data_criteria) {
 
@@ -151,6 +152,9 @@ class StatsSegmentation extends Module
 					$criteria->setType(new Text($type->query->__toString(),
 						$type->nameTable->__toString(),
 						$type->placeholder->__toString()));
+					break;
+				case 'date':
+					$criteria->setType(new Date($type->query->__toString()));
 					break;
 			}
 

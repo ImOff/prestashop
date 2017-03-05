@@ -30,12 +30,11 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT name FROM `ps_group_lang` where id_lang=1</tableQuery>
+			<tableQuery>SELECT id_group as id,name FROM `ps_group_lang` where id_lang=1</tableQuery>
 			<nameTable>group_lang</nameTable>
 			<column>name</column>
 			<placeholder>All group</placeholder>
 			<query>id_customer # (SELECT id_customer FROM ps_customer_group WHERE id_group IN (@))</query>
-			<queryTable>SELECT id_group,name FROM id_group where id_lang = @ AND id_customer = @</queryTable>
 		</type>
 	</Criters>
 	<Criters>
@@ -46,7 +45,7 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT name FROM `ps_lang`</tableQuery>
+			<tableQuery>SELECT id_lang as id, name FROM `ps_lang`</tableQuery>
 			<nameTable>lang</nameTable>
 			<column>name</column>
 			<placeholder>All languages</placeholder>
@@ -61,7 +60,7 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT name FROM ps_currency</tableQuery>
+			<tableQuery>SELECT id_currency as id,name FROM ps_currency</tableQuery>
 			<nameTable>currency</nameTable>
 			<column>name</column>
 			<placeholder>All currencies</placeholder>
@@ -76,7 +75,7 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT name FROM ps_country_lang where id_lang=1</tableQuery>
+			<tableQuery>SELECT ps_country_lang.id_country as id,ps_country_lang.name from ps_country_lang INNER JOIN ps_address ON ps_country_lang.id_country = ps_address.id_country where id_customer > 0 GROUP BY ps_address.id_country </tableQuery>
 			<nameTable>country_lang</nameTable>
 			<column>name</column>
 			<placeholder>All countries</placeholder>
@@ -88,10 +87,12 @@
 		<description>Age</description>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
+		<canonical>yearsold</canonical>
 		<type>
 			<name>text</name>
 			<nameTable>customer</nameTable>
 			<column>birthday</column>
+			<query>id_customer # (SELECT id_customer from ps_customer having year(NOW()) - year(`birthday`) - (DATE_FORMAT(NOW(), '00-%m-%d') &lt; DATE_FORMAT(`birthday`, '00-%m-%d')) between '@' and '@')</query>
 		</type>
 	</Criters>
 	<Criters>
@@ -102,7 +103,7 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT name FROM `ps_gender_lang` where id_lang=1</tableQuery>
+			<tableQuery>SELECT id_gender as id,name FROM `ps_gender_lang` where id_lang=1</tableQuery>
 			<nameTable>gender_lang</nameTable>
 			<column>name</column>
 			<placeholder>All sexes</placeholder>
@@ -118,7 +119,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Category</nameTable>
-			<column></column>
+			<tableQuery>SELECT ps_category_lang.name FROM ps_category_lang INNER JOIN ps_product ON ps_category_lang.id_category=ps_product.id_category_default Group by id_category_default</tableQuery>
+			<column>name</column>
 			<placeholder>All Categories</placeholder>
 		</type>
 	</Criters>
@@ -131,6 +133,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Brand</nameTable>
+			<tableQuery>SELECT name FROM `ps_manufacturer`</tableQuery>
+			<column>name</column>
 			<placeholder>All brands</placeholder>
 		</type>
 	</Criters>
@@ -143,6 +147,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Product</nameTable>
+			<tableQuery>SELECT name FROM `ps_product_lang` where id_lang=1</tableQuery>
+			<column>name</column>
 			<placeholder>All products</placeholder>
 		</type>
 	</Criters>
@@ -169,7 +175,7 @@
 		<switch2>After</switch2>
 		<type>
 			<name>date</name>
-			<nameTable>No Command</nameTable>
+			<query>id_customer in (SELECT id_customer FROM `ps_orders` where `date_add` # '@')</query>
 		</type>
 	</Criters>
 	<Criters>
@@ -193,6 +199,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Category</nameTable>
+			<tableQuery>SELECT ps_category_lang.name FROM ps_category_lang INNER JOIN ps_product ON ps_category_lang.id_category=ps_product.id_category_default Group by id_category_default</tableQuery>
+			<column>name</column>
 			<placeholder>All categories</placeholder>
 		</type>
 	</Criters>
@@ -205,6 +213,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Brand</nameTable>
+			<tableQuery>SELECT name FROM `ps_manufacturer`</tableQuery>
+			<column>name</column>
 			<placeholder>All brands</placeholder>
 		</type>
 	</Criters>
@@ -217,6 +227,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Product</nameTable>
+			<tableQuery>SELECT name FROM `ps_product_lang` where id_lang=1</tableQuery>
+			<column>name</column>
 			<placeholder>All products</placeholder>
 		</type>
 	</Criters>

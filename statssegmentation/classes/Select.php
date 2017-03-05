@@ -19,14 +19,12 @@ class Select extends Type
 		$this->tableName = $tableName;
 		$this->labelForAll = $labelForAll;
 		$this->column = $column;
-		// $sql = new DbQuery();
-		// $sql->select('*')->from(pSQL($tableName));
 		$sql = $tableQuery;
 		if ($results = Db::getInstance()->ExecuteS($sql))
 		{
 			$this->list = array();
 			foreach ($results as $row) {
-				$this->list[] = array('id' => $row['id_' . $tableName], 'name' => $row[$this->column]);
+				$this->list[] = array('id' => $row['id'], 'name' => $row[$this->column]);
 			}
 		}
 	}
@@ -34,11 +32,10 @@ class Select extends Type
 	function getInput($name)
 	{
 		$html = null;
-		var_dump ($name);
-		$html .= '<td><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(\'' . $this->tableName . '\')">';
+		$html .= '<td><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(\'' . $name . '\')">';
 		$html .= '<select name="s_' . $name . '"><option value="0">' . $this->labelForAll . '</option></select>';
 		$html .= '<div class="overSelect"></div></div>';
-		$html .= '<div id="' . $this->tableName . '" class="checkboxes">';
+		$html .= '<div id="' . $name . '" class="checkboxes">';
 		$i = 0;
 		foreach ($this->list as $element) {
 			$html .= '<label for="' . $i . "_" . $this->tableName . '">';
@@ -59,17 +56,21 @@ class Select extends Type
 		else
 			$query = str_replace("#", "NOT IN", $this->query);
 
-		for ($i = 0; $i < count($this->list); $i++)
+		$i = 0;
+		foreach ($this->list as $element)
 		{
-			if (Tools::getValue($i . "_" . $this->tableName))
-				$values[] = $i + 1;
+			if (Tools::getValue($i++ . "_" . $this->tableName))
+			{
+				$values[] = (int)$element['id'];
+			}
 		}
 
 		if (!count($values))
 		{
-			for ($i = 0; $i < count($this->list); $i++)
-				$values[] = $i + 1;
+			foreach ($this->list as $element)
+					$values[] = (int)$element['id'];
 		}
+
 		$query = str_replace("@", implode(",", $values), $query);
 
 		return ($query);
