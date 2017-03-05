@@ -119,7 +119,7 @@
 		<type>
 			<name>select</name>
 			<nameTable>Category</nameTable>
-			<tableQuery>SELECT ps_category_lang.name FROM ps_category_lang INNER JOIN ps_product ON ps_category_lang.id_category=ps_product.id_category_default Group by id_category_default</tableQuery>
+			<tableQuery>SELECT id_category as id,ps_category_lang.name FROM ps_category_lang INNER JOIN ps_product ON ps_category_lang.id_category=ps_product.id_category_default Group by id_category_default</tableQuery>
 			<column>name</column>
 			<placeholder>All Categories</placeholder>
 		</type>
@@ -199,7 +199,7 @@
 		<type>
 			<name>select</name>
 			<nameTable>Category</nameTable>
-			<tableQuery>SELECT ps_category_lang.name FROM ps_category_lang INNER JOIN ps_product ON ps_category_lang.id_category=ps_product.id_category_default Group by id_category_default</tableQuery>
+			<tableQuery>SELECT id_category as id,ps_category_lang.name FROM ps_category_lang INNER JOIN ps_product ON ps_category_lang.id_category=ps_product.id_category_default Group by id_category_default</tableQuery>
 			<column>name</column>
 			<placeholder>All categories</placeholder>
 		</type>
@@ -251,8 +251,9 @@
 		<canonical>habits_payment</canonical>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT ps_module.name FROM ps_module INNER JOIN ps_module_currency ON ps_module.id_module=ps_module_currency.id_module</tableQuery>
+			<tableQuery>SELECT ps_module.id_module as id,ps_module.name FROM ps_module INNER JOIN ps_module_currency ON ps_module.id_module=ps_module_currency.id_module</tableQuery>
 			<column>name</column>
+			<query>id_module = @ </query>
 			<nameTable>Payment</nameTable>
 			<placeholder>All payment</placeholder>
 		</type>

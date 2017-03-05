@@ -122,6 +122,7 @@ class StatsSegmentation extends Module
 	public function parseXml ($fileName) {
 		$criter = new CriteriaGenerator();
 		$pwd = getcwd();
+		var_dump(_PS_GENDERS_DIR_);
 		$file = file_get_contents("../modules/statssegmentation/" . $fileName);
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $data_criteria) {
