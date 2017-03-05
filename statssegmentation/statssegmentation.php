@@ -120,7 +120,8 @@ class StatsSegmentation extends Module
 	public function parseXml ($fileName) {
 		$criter = new CriteriaGenerator();
 		$pwd = getcwd();
-		$file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
+		//$file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
+		$file = file_get_contents($pwd . '/../..' . $this->_path . $fileName);
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $data_criteria) {
 
