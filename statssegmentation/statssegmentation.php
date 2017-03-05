@@ -53,7 +53,8 @@ class StatsSegmentation extends Module
 
 		if (Tools::isSubmit('search'))
 		{
-			$sql = $this->getCriteriaQuery(array_merge($this->profile));
+			$sql = $this->getCriteriaQuery(array_merge($this->profile, $this->abandoned,
+			$this->activity, $this->purchases, $this->habits));
 			$customers = Db::getInstance()->ExecuteS($sql);
 
 			$result = count($customers);
@@ -79,6 +80,7 @@ class StatsSegmentation extends Module
 				'segmentation_habits_criterias' => $habits_html,
 				'segmentation_result' => $result,
 				'segmentation_query' => $sql,
+				'segmentation_customers' => $customers,
 			)
 		);
 
@@ -120,6 +122,8 @@ class StatsSegmentation extends Module
 	public function parseXml ($fileName) {
 		$criter = new CriteriaGenerator();
 		$pwd = getcwd();
+		// $file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
+		//$file = file_get_contents($pwd . '/../..' . $this->_path . $fileName);
 		$file = file_get_contents($pwd . '/../../../' . $this->_path . $fileName);
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $data_criteria) {
@@ -148,6 +152,7 @@ class StatsSegmentation extends Module
 					$criteria->setType(new Text($type->query->__toString(),
 						$type->nameTable->__toString(),
 						$type->placeholder->__toString()));
+					break;
 			}
 
 			switch ($data_criteria->categorie->__toString()) {

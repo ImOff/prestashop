@@ -36,7 +36,7 @@ class Select extends Type
 		$html = null;
 		var_dump ($name);
 		$html .= '<td><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(\'' . $name . '\')">';
-		$html .= '<select name="s_' . $this->name . '"><option value="0">' . $this->labelForAll . '</option></select>';
+		$html .= '<select name="s_' . $name . '"><option value="0">' . $this->labelForAll . '</option></select>';
 		$html .= '<div class="overSelect"></div></div>';
 		$html .= '<div id="' . $name . '" class="checkboxes">';
 		$i = 0;

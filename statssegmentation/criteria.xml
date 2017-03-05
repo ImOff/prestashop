@@ -88,10 +88,12 @@
 		<description>Age</description>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
+		<canonical>yearsold</canonical>
 		<type>
 			<name>text</name>
 			<nameTable>customer</nameTable>
 			<column>birthday</column>
+			<query>id_customer # (SELECT id_customer from ps_customer having year(NOW()) - year(`birthday`) - (DATE_FORMAT(NOW(), '00-%m-%d') &lt; DATE_FORMAT(`birthday`, '00-%m-%d')) between '@' and '@')</query>
 		</type>
 	</Criters>
 	<Criters>
@@ -186,6 +188,7 @@
 		<type>
 			<name>text</name>
 			<nameTable>Amount</nameTable>
+			<query>id_customer # (select id_customer from ps_orders group by id_customer having count(id_customer) between '@' and '@')</query>
 		</type>
 	</Criters>
 	<Criters>
