@@ -34,7 +34,6 @@ class Select extends Type
 	function getInput($name)
 	{
 		$html = null;
-		var_dump ($name);
 		$html .= '<td><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(\'' . $name . '\')">';
 		$html .= '<select name="s_' . $name . '"><option value="0">' . $this->labelForAll . '</option></select>';
 		$html .= '<div class="overSelect"></div></div>';

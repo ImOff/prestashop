@@ -30,12 +30,11 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT name FROM `ps_group_lang` where id_lang=1</tableQuery>
+			<tableQuery>SELECT id_group as id,name FROM `ps_group_lang` where id_lang=1</tableQuery>
 			<nameTable>group_lang</nameTable>
 			<column>name</column>
 			<placeholder>All group</placeholder>
 			<query>id_customer # (SELECT id_customer FROM ps_customer_group WHERE id_group IN (@))</query>
-			<queryTable>SELECT id_group,name FROM id_group where id_lang = @ AND id_customer = @</queryTable>
 		</type>
 	</Criters>
 	<Criters>
