@@ -107,6 +107,7 @@
 	<Criters>
 		<categorie>Abandoned</categorie>
 		<description>Category</description>
+		<canonical>abandoned_categorie</canonical>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
 		<type>
@@ -119,6 +120,7 @@
 	<Criters>
 		<categorie>Abandoned</categorie>
 		<description>Brand</description>
+		<canonical>abandoned_marque</canonical>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
 		<type>
@@ -130,6 +132,7 @@
 	<Criters>
 		<categorie>Abandoned</categorie>
 		<description>Product</description>
+		<canonical>abandoned_produit</canonical>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
 		<type>
@@ -141,6 +144,7 @@
 	<Criters>
 		<categorie>Abandoned</categorie>
 		<description>Amount</description>
+		<canonical>abandoned_montant</canonical>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
 		<type>
@@ -155,6 +159,7 @@
 	<Criters>
 		<categorie>Activity</categorie>
 		<description>No Command</description>
+		<canonical>activity_no_cmd</canonical>
 		<switch1>Before</switch1>
 		<switch2>After</switch2>
 		<type>
@@ -167,6 +172,7 @@
 		<description>Number of order</description>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
+		<canonical>activity_nb_cmd</canonical>
 		<type>
 			<name>text</name>
 			<nameTable>Amount</nameTable>
@@ -177,6 +183,7 @@
 		<description>Category</description>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
+		<canonical>purchases_categorie</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Category</nameTable>
@@ -188,6 +195,7 @@
 		<description>Brand</description>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
+		<canonical>purchases_brand</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Brand</nameTable>
@@ -199,6 +207,7 @@
 		<description>Product</description>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
+		<canonical>purchases_produit</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Product</nameTable>
@@ -210,6 +219,7 @@
 		<description>Amount</description>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
+		<canonical>purchases_montant</canonical>
 		<type>
 			<name>text</name>
 			<nameTable>Amount</nameTable>
@@ -220,6 +230,7 @@
 		<description>Payment</description>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
+		<canonical>habits_payment</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Payment</nameTable>
@@ -231,6 +242,7 @@
 		<description>Delivery type</description>
 		<switch1>Is</switch1>
 		<switch2>Is not</switch2>
+		<canonical>habits_delivery_type</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>Delivery type</nameTable>
