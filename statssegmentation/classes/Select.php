@@ -12,7 +12,8 @@ class Select extends Type
 
 	private $column = null;
 
-	function __construct($query, $tableQuery, $tableName, $labelForAll, $column)
+	function __construct($query, $tableQuery,$tableName, $labelForAll, $parameters = ['1', '5'],$column)
+
 	{
 		parent::__construct($query);
 		$this->tableName = $tableName;
@@ -35,13 +36,13 @@ class Select extends Type
 		$html = null;
 		var_dump ($name);
 		$html .= '<td><div class="multiselect"><div class="selectBox" onclick="showCheckboxes(\'' . $this->tableName . '\')">';
-		$html .= '<select name="s_' . $name . '"><option value="0">' . $this->labelForAll . '</option></select>';
+		$html .= '<select name="s_' . $this->name . '"><option value="0">' . $this->labelForAll . '</option></select>';
 		$html .= '<div class="overSelect"></div></div>';
 		$html .= '<div id="' . $this->tableName . '" class="checkboxes">';
 		$i = 0;
 		foreach ($this->list as $element) {
 			$html .= '<label for="' . $i . "_" . $this->tableName . '">';
-			$html .= '<input type="checkbox" id="' . $i . "_" . $this->tableName . '"/>';
+			$html .= '<input type="checkbox" name="' . $i . "_" . $this->tableName . '"/>';
 			$html .= '<span>' . $element['name'] . '</span></label>';
 			$i++;
 		}
@@ -51,6 +52,26 @@ class Select extends Type
 
 	function getQuery($name, $operator = true)
 	{
+		$values = [];
+
+		if ($operator)
+			$query = str_replace("#", "IN", $this->query);
+		else
+			$query = str_replace("#", "NOT IN", $this->query);
+
+		for ($i = 0; $i < count($this->list); $i++)
+		{
+			if (Tools::getValue($i . "_" . $this->tableName))
+				$values[] = $i + 1;
+		}
+
+		if (!count($values))
+		{
+			for ($i = 0; $i < count($this->list); $i++)
+				$values[] = $i + 1;
+		}
+		$query = str_replace("@", implode(",", $values), $query);
+
 		return ($query);
 	}
 }

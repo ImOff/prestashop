@@ -24,13 +24,12 @@ class Criteria
 
 	function getHtml()
 	{
-		var_dump($this->name);
 		$html = null;
 		$html .= '<tr>' .
 			'<td>' . $this->description . '</td>' .
 			'<td><div>' .
 			'<label class="isnot">' .
-				'<input type="checkbox" class="radio" value="0" name="' . $this->name . '">' .
+				'<input type="checkbox" class="radio" value="0" style="margin-left: 5px; margin-right: 20px;" name="' . $this->name . '">' .
 				'<span>' . $this->switchs[0] . '</span>' .
 			'</label>' .
 			'<label class="isnot">' .

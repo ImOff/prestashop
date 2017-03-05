@@ -4,8 +4,8 @@
 		<categorie>Profil</categorie>
 		<canonical>newsletter</canonical>
 		<description>Newsletter (if enabled)</description>
-		<switch1>Oui</switch1>
-		<switch2>Non</switch2>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>none</name>
 			<query>newsletter # (1)</query>
@@ -15,8 +15,8 @@
 		<categorie>Profil</categorie>
 		<description>Opt-in</description>
 		<canonical>optin</canonical>
-		<switch1>Oui</switch1>
-		<switch2>Non</switch2>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>none</name>
 			<query>optin # (1)</query>
@@ -25,22 +25,25 @@
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Groupe Client</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<canonical>group</canonical>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
 			<tableQuery>SELECT name FROM `ps_group_lang` where id_lang=1</tableQuery>
 			<nameTable>group_lang</nameTable>
 			<column>name</column>
 			<placeholder>All group</placeholder>
-			<query>id_group # (@)</query>
+			<query>id_customer # (SELECT id_customer FROM ps_customer_group WHERE id_group IN (@))</query>
+			<queryTable>SELECT id_group,name FROM id_group where id_lang = @ AND id_customer = @</queryTable>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
-		<description>Langue</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Language</description>
+		<canonical>lang</canonical>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
 			<tableQuery>SELECT name FROM `ps_lang`</tableQuery>
@@ -52,35 +55,39 @@
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
-		<description>Devise</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Currencies</description>
+		<canonical>device</canonical>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
 			<tableQuery>SELECT name FROM ps_currency</tableQuery>
 			<nameTable>currency</nameTable>
 			<column>name</column>
 			<placeholder>All currencies</placeholder>
+			<query>id_shop # (SELECT id_shop FROM ps_currency_shop WHERE id_currency IN (@))</query>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Country</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<canonical>country</canonical>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
 			<tableQuery>SELECT name FROM ps_country_lang where id_lang=1</tableQuery>
 			<nameTable>country_lang</nameTable>
 			<column>name</column>
 			<placeholder>All countries</placeholder>
+			<query>id_customer in (select id_customer from ps_orders where id_address_delivery in (select id_address from ps_address where id_country # (@)))</query>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Age</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>text</name>
 			<nameTable>customer</nameTable>
@@ -90,70 +97,76 @@
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Sexe</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclus</switch2>
+		<canonical>sexe</canonical>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
 			<tableQuery>SELECT name FROM `ps_gender_lang` where id_lang=1</tableQuery>
 			<nameTable>gender_lang</nameTable>
 			<column>name</column>
 			<placeholder>All sexes</placeholder>
-			<query>gender # (@)</query>
+			<query>id_gender # (@)</query>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Abandoned</categorie>
-		<description>Categorie</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Category</description>
+		<canonical>abandoned_categorie</canonical>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<nameTable>Categorie</nameTable>
+			<nameTable>Category</nameTable>
 			<column></column>
 			<placeholder>All Categories</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Abandoned</categorie>
-		<description>Marque</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Brand</description>
+		<canonical>abandoned_marque</canonical>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<nameTable>Marque</nameTable>
+			<nameTable>Brand</nameTable>
 			<placeholder>All brands</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Abandoned</categorie>
-		<description>Produit</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Product</description>
+		<canonical>abandoned_produit</canonical>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<nameTable>Produit</nameTable>
+			<nameTable>Product</nameTable>
 			<placeholder>All products</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Abandoned</categorie>
-		<description>Montant</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Amount</description>
+		<canonical>abandoned_montant</canonical>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
 		<type>
 			<name>text</name>
-			<nameTable>Montant</nameTable>
+			<nameTable>Amount</nameTable>
 		</type>
 		<type>
 			<name>text</name>
-			<nameTable>Montant</nameTable>
+			<nameTable>Amount</nameTable>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Activity</categorie>
 		<description>No Command</description>
-		<switch1>Avant</switch1>
-		<switch2>Après</switch2>
+		<canonical>activity_no_cmd</canonical>
+		<switch1>Before</switch1>
+		<switch2>After</switch2>
 		<type>
 			<name>date</name>
 			<nameTable>No Command</nameTable>
@@ -161,80 +174,88 @@
 	</Criters>
 	<Criters>
 		<categorie>Activity</categorie>
-		<description>Nombre de Commande</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Number of order</description>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
+		<canonical>activity_nb_cmd</canonical>
 		<type>
 			<name>text</name>
-			<nameTable>Montant</nameTable>
+			<nameTable>Amount</nameTable>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Purchases</categorie>
-		<description>Categorie</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Category</description>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
+		<canonical>purchases_categorie</canonical>
 		<type>
 			<name>select</name>
-			<nameTable>Categorie</nameTable>
+			<nameTable>Category</nameTable>
 			<placeholder>All categories</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Purchases</categorie>
-		<description>Marque</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Brand</description>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
+		<canonical>purchases_brand</canonical>
 		<type>
 			<name>select</name>
-			<nameTable>Marque</nameTable>
+			<nameTable>Brand</nameTable>
 			<placeholder>All brands</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Purchases</categorie>
-		<description>Produit</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Product</description>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
+		<canonical>purchases_produit</canonical>
 		<type>
 			<name>select</name>
-			<nameTable>Produit</nameTable>
+			<nameTable>Product</nameTable>
 			<placeholder>All products</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Purchases</categorie>
-		<description>Montant</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Amount</description>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
+		<canonical>purchases_montant</canonical>
 		<type>
 			<name>text</name>
-			<nameTable>Montant</nameTable>
+			<nameTable>Amount</nameTable>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Habits</categorie>
-		<description>Paiement</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Payment</description>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
+		<canonical>habits_payment</canonical>
 		<type>
 			<name>select</name>
-			<nameTable>Paiement</nameTable>
 			<tableQuery>SELECT ps_module.name FROM ps_module INNER JOIN ps_module_currency ON ps_module.id_module=ps_module_currency.id_module</tableQuery>
 			<column>name</column>
-			<placeholder>All paiement</placeholder>
+			<nameTable>Payment</nameTable>
+			<placeholder>All payment</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Habits</categorie>
-		<description>Livraison type</description>
-		<switch1>Inclus</switch1>
-		<switch2>Exclu</switch2>
+		<description>Delivery type</description>
+		<switch1>Is</switch1>
+		<switch2>Is not</switch2>
+		<canonical>habits_delivery_type</canonical>
 		<type>
 			<name>select</name>
 			<nameTable>carrier_lang</nameTable>
 			<tableQuery>SELECT delay FROM `ps_carrier_lang` where id_lang=1</tableQuery>
 			<column>delay</column>
+			<nameTable>Delivery type</nameTable>
 			<placeholder>All type of delivery</placeholder>
 		</type>
 	</Criters>

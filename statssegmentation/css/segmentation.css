@@ -103,6 +103,10 @@
 	margin-top: 3vh;
 }
 
+.isnot {
+	
+}
+
 .list {
 	background-color: #39688F;
 	float: left;
@@ -147,17 +151,6 @@ td, th {
 	float: left;
 	margin-right: 10%;
 	margin-left: 15%;
-}
-
-.form input {
-	width: 40px;
-}
-
-.to input {
-	width: 40px;
-}
-.to {
-	float: left;
 }
 
 .detail-criteria-before {
