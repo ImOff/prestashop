@@ -50,12 +50,19 @@ class StatsSegmentation extends Module
 		$result = 0;
 		$profile_html = null;
 		$sql = null;
+		$customers = []; 
 
 		if (Tools::isSubmit('search'))
 		{
 			$sql = $this->getCriteriaQuery(array_merge($this->profile, $this->abandoned,
 			$this->activity, $this->purchases, $this->habits));
 			$customers = Db::getInstance()->ExecuteS($sql);
+
+			foreach ($customers as $customer) {
+				$date = new DateTime($customer["birthday"]);
+				$today = new DateTime();
+				$customer["birthday"] = $date->diff($today)->format('%y');
+			}
 
 			$result = count($customers);
 		}

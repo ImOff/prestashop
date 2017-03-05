@@ -71,6 +71,10 @@
 			<button class="button-search" type="submit" name="search">Search</button>
 		</div>
 
+		<div class="container-result">
+			<p class="result-text">{$segmentation_result} results available with the selected criteria.</p>
+		</div>
+
 		<div class="option-buttons">
 			<div class="list" onclick="displayListResult()">
 				Show list
@@ -80,10 +84,6 @@
 		    	Export in CSV
 	 		</div>
 	 	</div>
-
-	 	<div class="container-result">
-			<p class="result-text">{$segmentation_result} results available with the selected criteria.</p>
-		</div>
 
 	</form>
 	<!--<p style="background-color: #CEF6D8;">{$segmentation_query}</p-->
@@ -95,8 +95,8 @@
 				<th>Name</th>
 				<th>Gender</th>
 				<th>Email</th>
-				<th>Adresse 1</th>
-				<th>Adresse 2</th>
+				<th>Address 1</th>
+				<th>Address 2</th>
 				<th>City</th>
 				<th>Poste Code/State</th>
 				<th>Country</th>
@@ -163,17 +163,35 @@ function displayListResult() {
 }
 
 function exportCSV() {
-	var csvContent = "data:text/csv;charset=utf-8,";
-	console.log(data);
-	data.forEach(function(index){
-		for(var i = 0; i < arguments.length; ++i)
-		{
-			console.log(arguments[i]);
- 			data.push(arguments[i]);
-		}
-		var dataString = data.join(',');
-   		csvContent += index < data.length ? dataString+ "\n" : dataString;
+	var csvContent = "data:text/csv;charset=utf-8," + 
+		'"First Name",' +
+		"Name," +
+		"Gender," +
+		"Email," +
+		'"Address 1",' + 
+		'"Address 2",' +
+		"City," +
+		"Postcode/State," +
+		"Country," +
+		"Phone," +
+		"Birthday\n"; 
+   	
+	data.forEach(function(customer){
+		console.log(customer);
+		csvContent += '"' + customer["firstname"] + '",'; 
+		csvContent += '"' + customer["lastname"] + '",';
+		csvContent += '"' + customer["gender"] + '",';
+		csvContent += '"' + customer["email"] + '",';
+		csvContent += '"' + customer["addr1"] + '",';
+		csvContent += '"' + customer["addr2"] + '",';
+		csvContent += '"' + customer["city"] + '",';
+		csvContent += '"' + customer["postcode"] + '",';
+		csvContent += '"' + customer["country"] + '",';
+		csvContent += '"' + customer["phone"] + '",';
+		csvContent += '"' + customer["birthday"] + '"\n';
 	});
+
+   	//csvContent += index < data.length ? dataString+ "\n" : dataString;
 
 	var encodedUri = encodeURI(csvContent);
 	var link = document.createElement("a");
