@@ -80,6 +80,7 @@ class StatsSegmentation extends Module
 				'segmentation_habits_criterias' => $habits_html,
 				'segmentation_result' => $result,
 				'segmentation_query' => $sql,
+				'segmentation_json' => json_encode($customers, JSON_HEX_TAG),
 				'segmentation_customers' => $customers,
 			)
 		);
@@ -89,7 +90,7 @@ class StatsSegmentation extends Module
 
 	public function getCriteriaQuery($criterias)
 	{
-		$query = 'SELECT * FROM '._DB_PREFIX_.'customer';
+		$query = 'SELECT firstname, lastname, (SELECT name FROM ps_gender_lang INNER JOIN ps_customer WHERE ps_gender_lang.id_gender = ps_customer.id_gender limit 0,1) as gender, email, (SELECT phone FROM ps_address INNER JOIN ps_customer WHERE ps_address.id_customer = ps_customer.id_customer limit 0,1) as phone, (SELECT address1 FROM ps_address INNER JOIN ps_customer WHERE ps_address.id_customer = ps_customer.id_customer limit 0,1) as addr1, (SELECT address2 FROM ps_address INNER JOIN ps_customer WHERE ps_address.id_customer = ps_customer.id_customer limit 0,1) as addr2, (SELECT city FROM ps_address INNER JOIN ps_customer WHERE ps_address.id_customer = ps_customer.id_customer limit 0,1) as city, (SELECT postcode FROM ps_address INNER JOIN ps_customer WHERE ps_address.id_customer = ps_customer.id_customer limit 0,1) as postcode, (SELECT name FROM ps_country_lang WHERE id_country = (SELECT id_country FROM ps_address INNER JOIN ps_customer WHERE ps_customer.id_customer = ps_address.id_customer limit 0,1)) as country, birthday FROM ps_customer';
 
 		if (!count($criterias))
 			return ($query);
@@ -110,7 +111,6 @@ class StatsSegmentation extends Module
 				$query .= ' ' . $criteria->getQuery();
 			}
 		}
-
 		return ($query);
 	}
 

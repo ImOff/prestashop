@@ -6,114 +6,127 @@
 
 	<form method="post">
 
-    <div class="roll-container">
-        <div class="profile" onclick="displayDiv('profile')">
-            <p>Profile</p>
-        </div>
-        <div class="hidden-div" id="profile">
-						<table>
-							{foreach $segmentation_profile_criterias as $criterias}
-								{$criterias}
-							{/foreach}
-						</table>
-        </div>
-    </div>
+	    <div class="roll-container">
+	        <div class="profile" onclick="displayDiv('profile')">
+	            <p>Profile</p>
+	        </div>
+	        <div class="hidden-div" id="profile">
+							<table>
+								{foreach $segmentation_profile_criterias as $criterias}
+									{$criterias}
+								{/foreach}
+							</table>
+	        </div>
+	    </div>
 
-    <div class="roll-container2">
-        <div class="behaviour" onclick="displayDiv('behaviour')">
-            <p>Behaviour</p>
-        </div>
-        <div class="hidden-div under-hidden" id="behaviour">
-            <div onclick="displayDiv('activity')" class="category-border">
-                <p>Activity</p>
-            </div>
-                <div id="activity" class="detail-under-div">
-                    <table>
-                		    {foreach $segmentation_activity_criterias as $criterias}
-								{$criterias}
-							{/foreach}
-                    </table>
-                </div>
-            <div onclick="displayDiv('purchases')" class="category-border">
-                <p>Specific purchases & amounts</p>
-            </div>
-                <div id="purchases" class="detail-under-div">
-                    <table>
-                   			{foreach $segmentation_purchases_criterias as $criterias}
-								{$criterias}
-							{/foreach}
-                    </table>
-                </div>
-            <div onclick="displayDiv('abandoned')" class="category-border">
-                <p>Abandoned carts</p>
-            </div>
-                <div id="abandoned" class="detail-under-div">
-                    <table>
-							{foreach $segmentation_abandoned_criterias as $criterias}
-								{$criterias}
-							{/foreach}
-                    </table>
-                </div>
-            <div onclick="displayDiv('habits')" class="category-border">
-                <p>Habits</p>
-            </div>
-                <div id="habits" class="detail-under-div">
-                    <table>
-							{foreach $segmentation_habits_criterias as $criterias}
-								{$criterias}
-							{/foreach}
-                    </table>
-                </div>
-        </div>
-    </div>
+	    <div class="roll-container2">
+	        <div class="behaviour" onclick="displayDiv('behaviour')">
+	            <p>Behaviour</p>
+	        </div>
+	        <div class="hidden-div under-hidden" id="behaviour">
+	            <div onclick="displayDiv('activity')" class="category-border">
+	                <p>Activity</p>
+	            </div>
+	                <div id="activity" class="detail-under-div">
+	                    <table>
+	                		    {foreach $segmentation_activity_criterias as $criterias}
+									{$criterias}
+								{/foreach}
+	                    </table>
+	                </div>
+	            <div onclick="displayDiv('purchases')" class="category-border">
+	                <p>Specific purchases & amounts</p>
+	            </div>
+	                <div id="purchases" class="detail-under-div">
+	                    <table>
+	                   			{foreach $segmentation_purchases_criterias as $criterias}
+									{$criterias}
+								{/foreach}
+	                    </table>
+	                </div>
+	            <div onclick="displayDiv('abandoned')" class="category-border">
+	                <p>Abandoned carts</p>
+	            </div>
+	                <div id="abandoned" class="detail-under-div">
+	                    <table>
+								{foreach $segmentation_abandoned_criterias as $criterias}
+									{$criterias}
+								{/foreach}
+	                    </table>
+	                </div>
+	            <div onclick="displayDiv('habits')" class="category-border">
+	                <p>Habits</p>
+	            </div>
+	                <div id="habits" class="detail-under-div">
+	                    <table>
+								{foreach $segmentation_habits_criterias as $criterias}
+									{$criterias}
+								{/foreach}
+	                    </table>
+	                </div>
+	        </div>
+	    </div>
 
 		<div class="search-container">
 			<button class="button-search" type="submit" name="search">Search</button>
 		</div>
+
+		<div class="option-buttons">
+			<div class="list" onclick="displayListResult()">
+				Show list
+			</div>
+
+			<div class="csv" onclick="exportCSV()">
+		    	Export in CSV
+	 		</div>
+	 	</div>
+
+	 	<div class="container-result">
+			<p class="result-text">{$segmentation_result} results available with the selected criteria.</p>
+		</div>
+
 	</form>
+	<!--<p style="background-color: #CEF6D8;">{$segmentation_query}</p-->
 
-	<p>{$segmentation_result} results available with the selected criteria.</p>
-
-	<p style="background-color: #CEF6D8;">{$segmentation_query}</p>
-
-	<table>
-		<tr>
-			<th>First Name</th>
-			<th>Name</th>
-			<th>Gender</th>
-			<th>Email</th>
-			<th>Adresse 1</th>
-			<th>Adresse 2</th>
-			<th>City</th>
-			<th>Poste Code/State</th>
-			<th>Country</th>
-			<th>Phone Number</th>
-			<th>Language</th>
-			<th>Age</th>
-		</tr>
-		<tr>
-			<td>{$segmentation_customers[0]['firstname']}</td>
-			<td>{$segmentation_customers[0]['lastname']}</td>
-			<td>{$segmentation_customers[0]['id_gender']}</td>
-			<td>{$segmentation_customers[0]['email']}</td>
-			<td>Adresse 1</td>
-			<td>Adresse 2</td>
-			<td>Ville</td>
-			<td>Code postal</td>
-			<td>Pays</td>
-			<td>Telephone</td>
-			<td>{$segmentation_customers[0]['id_lang']}</td>
-			<td>{$segmentation_customers[0]['birthday']}</td>
-		</tr>
-	</table>
-
-	<div><pre>{var_dump($segmentation_customers)}</div>
-
+	<div id="displayList" style="display: none;">
+		<table>
+			<tr>
+				<th>First Name</th>
+				<th>Name</th>
+				<th>Gender</th>
+				<th>Email</th>
+				<th>Adresse 1</th>
+				<th>Adresse 2</th>
+				<th>City</th>
+				<th>Poste Code/State</th>
+				<th>Country</th>
+				<th>Phone Number</th>
+				<th>Language</th>
+				<th>Age</th>
+			</tr>
+			{foreach $segmentation_customers as $customer}
+			<tr>
+				<td>{$customer['firstname']}</td>
+				<td>{$customer['lastname']}</td>
+				<td>{$customer['gender']}</td>
+				<td>{$customer['email']}</td>
+				<td>{$customer['addr1']}</td>
+				<td>{$customer['addr2']}</td>
+				<td>{$customer['city']}</td>
+				<td>{$customer['postcode']}</td>
+				<td>{$customer['country']}</td>
+				<td>{$customer['phone']}</td>
+				<td>{$customer['id_lang']}</td>
+				<td>{$customer['birthday']}</td>
+			</tr>
+			{/foreach}
+		</table>
+	</div>
 </div>
 
-
-
 <script type="text/javascript">
+
+var data = {$segmentation_json};
 
 function displayDiv(div) {
 	if (document.getElementById(div).style.display == 'none') {
@@ -140,15 +153,35 @@ function showCheckboxes(name) {
 	}
 }
 
+function displayListResult() {
+	if (document.getElementById("displayList").style.display == 'none') {
+		document.getElementById("displayList").style.display = 'block';
+		document.getElementById("displayList").style.overflow = 'scroll';
+	} else {
+		document.getElementById("displayList").style.display = 'none';
+	}
+}
+
 function exportCSV() {
-	var data = [["name1", "city1", "some other info"], ["name2", "city2", "more info"]];
 	var csvContent = "data:text/csv;charset=utf-8,";
-	data.forEach(function(infoArray, index){
-			dataString = infoArray.join(",");
-			csvContent += index < data.length ? dataString+ "\n" : dataString;
-			})
+	console.log(data);
+	data.forEach(function(index){
+		for(var i = 0; i < arguments.length; ++i)
+		{
+			console.log(arguments[i]);
+ 			data.push(arguments[i]);
+		}
+		var dataString = data.join(',');
+   		csvContent += index < data.length ? dataString+ "\n" : dataString;
+	});
+
 	var encodedUri = encodeURI(csvContent);
-	window.open(encodedUri);
+	var link = document.createElement("a");
+	link.setAttribute("href", encodedUri);
+	link.setAttribute("download", "customers_list.csv");
+	document.body.appendChild(link); // Required for FF
+
+	link.click(); // This will download the data file named "my_data.csv".
 }
 
 $("input:checkbox").on('click', function() {
