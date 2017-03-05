@@ -110,6 +110,7 @@
 .list {
 	background-color: #39688F;
 	width: 30%;
+	float: left;
 	text-align: center;
 	color: #fafafa;
 	padding: 5px 5px 5px 5px;
@@ -118,11 +119,13 @@
     -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
 	box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.58);
 	margin-bottom: 10px;
+	margin-right: 12%;
 }
 
 .csv {
 	background-color: #39688F;
 	width: 30%;
+	float: left;
 	text-align: center;
 	color: #fafafa;
 	padding: 5px 5px 5px 5px;
@@ -133,7 +136,7 @@
 }
 
 .option-buttons {
-	margin-left: 41.5%;
+	margin-left: 22%;
 }
 
 table {
@@ -208,4 +211,20 @@ td, th {
 
 .checkboxes span {
 	padding-left: 15px;
+}
+
+.result-text {
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: -40px;
+	color: #000;
+}
+
+.container-result {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.option-buttons {
+	margin-bottom: 15%;
 }
