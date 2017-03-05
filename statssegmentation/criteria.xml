@@ -176,7 +176,7 @@
 		<switch2>After</switch2>
 		<type>
 			<name>date</name>
-			<query>moulala</query>
+			<query>id_customer in (SELECT id_customer FROM `ps_orders` where `date_add` # '@')</query>
 		</type>
 	</Criters>
 	<Criters>
