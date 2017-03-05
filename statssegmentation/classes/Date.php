@@ -15,7 +15,7 @@ class Date extends Type
 
 		$html .= '<td>' .
 			'<input name="datepicker_' . $name . '" id="datepicker_' .
-			$name . '" class="datepicker  form-control hasDatepicker" type="text"></td>';
+			$name . '" class="datepicker  form-control hasDatepicker" type="date"></td>';
 
 		return $html;
 	}
