@@ -60,7 +60,7 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT name FROM ps_currency</tableQuery>
+			<tableQuery>SELECT id_currency as id,name FROM ps_currency</tableQuery>
 			<nameTable>currency</nameTable>
 			<column>name</column>
 			<placeholder>All currencies</placeholder>
@@ -75,7 +75,7 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT ps_country_lang.name from ps_country_lang INNER JOIN ps_address ON ps_country_lang.id_country = ps_address.id_country where id_customer > 0 GROUP BY ps_address.id_country </tableQuery>
+			<tableQuery>SELECT ps_country_lang.id_country as id,ps_country_lang.name from ps_country_lang INNER JOIN ps_address ON ps_country_lang.id_country = ps_address.id_country where id_customer > 0 GROUP BY ps_address.id_country </tableQuery>
 			<nameTable>country_lang</nameTable>
 			<column>name</column>
 			<placeholder>All countries</placeholder>
@@ -103,7 +103,7 @@
 		<switch2>Is not</switch2>
 		<type>
 			<name>select</name>
-			<tableQuery>SELECT name FROM `ps_gender_lang` where id_lang=1</tableQuery>
+			<tableQuery>SELECT id_gender as id,name FROM `ps_gender_lang` where id_lang=1</tableQuery>
 			<nameTable>gender_lang</nameTable>
 			<column>name</column>
 			<placeholder>All sexes</placeholder>
