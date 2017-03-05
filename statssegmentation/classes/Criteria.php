@@ -24,6 +24,7 @@ class Criteria
 
 	function getHtml()
 	{
+		var_dump($this->name);
 		$html = null;
 		$html .= '<tr>' .
 			'<td>' . $this->description . '</td>' .

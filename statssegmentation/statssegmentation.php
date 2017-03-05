@@ -138,8 +138,10 @@ class StatsSegmentation extends Module
 					break;
 				case 'select':
 					$criteria->setType(new Select($type->query->__toString(),
+						$type->tableQuery->__toString(),
 						$type->nameTable->__toString(),
-						$type->placeholder->__toString()));
+						$type->placeholder->__toString(),
+						$type->column->__toString()));
 					break;
 				case 'text':
 					$criteria->setType(new Text($type->query->__toString(),

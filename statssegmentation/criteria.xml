@@ -29,6 +29,7 @@
 		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
+			<tableQuery>SELECT name FROM `ps_group_lang` where id_lang=1</tableQuery>
 			<nameTable>group_lang</nameTable>
 			<column>name</column>
 			<placeholder>All group</placeholder>
@@ -42,8 +43,9 @@
 		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
+			<tableQuery>SELECT name FROM `ps_lang`</tableQuery>
 			<nameTable>lang</nameTable>
-			<column>id_lang</column>
+			<column>name</column>
 			<placeholder>All languages</placeholder>
 			<query>id_lang # (@)</query>
 		</type>
@@ -55,6 +57,7 @@
 		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
+			<tableQuery>SELECT name FROM ps_currency</tableQuery>
 			<nameTable>currency</nameTable>
 			<column>name</column>
 			<placeholder>All currencies</placeholder>
@@ -67,6 +70,7 @@
 		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
+			<tableQuery>SELECT name FROM ps_country_lang where id_lang=1</tableQuery>
 			<nameTable>country_lang</nameTable>
 			<column>name</column>
 			<placeholder>All countries</placeholder>
@@ -90,8 +94,9 @@
 		<switch2>Exclus</switch2>
 		<type>
 			<name>select</name>
-			<nameTable>t</nameTable>
-			<column>b</column>
+			<tableQuery>SELECT name FROM `ps_gender_lang` where id_lang=1</tableQuery>
+			<nameTable>gender_lang</nameTable>
+			<column>name</column>
 			<placeholder>All sexes</placeholder>
 			<query>gender # (@)</query>
 		</type>
@@ -215,6 +220,8 @@
 		<type>
 			<name>select</name>
 			<nameTable>Paiement</nameTable>
+			<tableQuery>SELECT ps_module.name FROM ps_module INNER JOIN ps_module_currency ON ps_module.id_module=ps_module_currency.id_module</tableQuery>
+			<column>name</column>
 			<placeholder>All paiement</placeholder>
 		</type>
 	</Criters>
@@ -225,7 +232,9 @@
 		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
-			<nameTable>Type Delivery</nameTable>
+			<nameTable>carrier_lang</nameTable>
+			<tableQuery>SELECT delay FROM `ps_carrier_lang` where id_lang=1</tableQuery>
+			<column>delay</column>
 			<placeholder>All type of delivery</placeholder>
 		</type>
 	</Criters>
