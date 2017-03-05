@@ -23,9 +23,12 @@ class Date extends Type
 	function getQuery($name, $operator = true)
 	{
 		if ($operator)
-			$query = str_replace("#", "IN", $this->query);
+			$query = str_replace("#", "<", $this->query);
 		else
-			$query = str_replace("#", "NOT IN", $this->query);
+			$query = str_replace("#", ">", $this->query);
+
+		$date = Tools::getValue('datepicker_' . $name);
+		$query = preg_replace("/@{1}/", $date, $query);
 
 		return ($query);
 	}
