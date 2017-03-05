@@ -71,6 +71,10 @@
 			<button class="button-search" type="submit" name="search">Search</button>
 		</div>
 
+		<div class="container-result">
+			<p class="result-text">{$segmentation_result} results available with the selected criteria.</p>
+		</div>
+
 		<div class="option-buttons">
 			<div class="list" onclick="displayListResult()">
 				Show list
@@ -80,10 +84,6 @@
 		    	Export in CSV
 	 		</div>
 	 	</div>
-
-	 	<div class="container-result">
-			<p class="result-text">{$segmentation_result} results available with the selected criteria.</p>
-		</div>
 
 	</form>
 	<!--<p style="background-color: #CEF6D8;">{$segmentation_query}</p-->
