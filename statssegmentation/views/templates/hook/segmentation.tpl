@@ -91,23 +91,25 @@
 			<th>Language</th>
 			<th>Age</th>
 		</tr>
+		{$i = 0}
+		{foreach $segmentation_customers as $customer}
 		<tr>
-			<td>{$segmentation_customers[0]['firstname']}</td>
-			<td>{$segmentation_customers[0]['lastname']}</td>
-			<td>{$segmentation_customers[0]['id_gender']}</td>
-			<td>{$segmentation_customers[0]['email']}</td>
-			<td>Adresse 1</td>
-			<td>Adresse 2</td>
-			<td>Ville</td>
-			<td>Code postal</td>
-			<td>Pays</td>
-			<td>Telephone</td>
-			<td>{$segmentation_customers[0]['id_lang']}</td>
-			<td>{$segmentation_customers[0]['birthday']}</td>
+			<td>{$segmentation_customers[$i]['firstname']}</td>
+			<td>{$segmentation_customers[$i]['lastname']}</td>
+			<td>{$segmentation_customers[$i]['gender']}</td>
+			<td>{$segmentation_customers[$i]['email']}</td>
+			<td>{$segmentation_customers[$i]['addr1']}</td>
+			<td>{$segmentation_customers[$i]['addr2']}</td>
+			<td>{$segmentation_customers[$i]['city']}</td>
+			<td>{$segmentation_customers[$i]['postcode']}</td>
+			<td>{$segmentation_customers[$i]['country']}</td>
+			<td>{$segmentation_customers[$i]['phone']}</td>
+			<td>{$segmentation_customers[$i]['id_lang']}</td>
+			<td>{$segmentation_customers[$i]['birthday']}</td>
 		</tr>
+		{$i++}
+		{/foreach}
 	</table>
-
-	<div><pre>{var_dump($segmentation_customers)}</div>
 
 </div>
 
