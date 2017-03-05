@@ -49,12 +49,11 @@ class StatsSegmentation extends Module
 	{
 		$result = 0;
 		$profile_html = null;
+		$sql = null;
 
 		if (Tools::isSubmit('search'))
 		{
 			$sql = $this->getCriteriaQuery(array_merge($this->profile));
-
-			var_dump($sql);
 			$customers = Db::getInstance()->ExecuteS($sql);
 
 			$result = count($customers);
@@ -79,6 +78,7 @@ class StatsSegmentation extends Module
 				'segmentation_purchases_criterias' => $purchases_html,
 				'segmentation_habits_criterias' => $habits_html,
 				'segmentation_result' => $result,
+				'segmentation_query' => $sql,
 			)
 		);
 
@@ -120,7 +120,7 @@ class StatsSegmentation extends Module
 	public function parseXml ($fileName) {
 		$criter = new CriteriaGenerator();
 		$pwd = getcwd();
-		$file = file_get_contents($pwd . '/../../../' . $this->_path . $fileName);
+		$file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $data_criteria) {
 
