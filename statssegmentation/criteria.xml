@@ -176,7 +176,7 @@
 		<switch2>After</switch2>
 		<type>
 			<name>date</name>
-			<nameTable>No Command</nameTable>
+			<query>moulala</query>
 		</type>
 	</Criters>
 	<Criters>

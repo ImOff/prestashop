@@ -3,6 +3,7 @@
 require_once('Select.php');
 require_once('None.php');
 require_once('Text.php');
+require_once('Date.php');
 
 class Criteria
 {
