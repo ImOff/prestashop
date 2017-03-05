@@ -153,6 +153,9 @@ class StatsSegmentation extends Module
 						$type->nameTable->__toString(),
 						$type->placeholder->__toString()));
 					break;
+				case 'date':
+					$criteria->setType(new Date($type->query->__toString()));
+					break;
 			}
 
 			switch ($data_criteria->categorie->__toString()) {
