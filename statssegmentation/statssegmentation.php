@@ -124,7 +124,7 @@ class StatsSegmentation extends Module
 		$pwd = getcwd();
 		// $file = file_get_contents($pwd . '/..' . $this->_path . $fileName);
 		//$file = file_get_contents($pwd . '/../..' . $this->_path . $fileName);
-		$file = file_get_contents($pwd . '/../../../' . $this->_path . $fileName);
+		$file = file_get_contents("../modules/statssegmentation/" . $fileName);
 		$this->xml = simplexml_load_string($file);
 		foreach ($this->xml as $data_criteria) {
 

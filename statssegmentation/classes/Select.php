@@ -19,8 +19,6 @@ class Select extends Type
 		$this->tableName = $tableName;
 		$this->labelForAll = $labelForAll;
 		$this->column = $column;
-		// $sql = new DbQuery();
-		// $sql->select('*')->from(pSQL($tableName));
 		$sql = $tableQuery;
 		if ($results = Db::getInstance()->ExecuteS($sql))
 		{
