@@ -49,12 +49,11 @@ class StatsSegmentation extends Module
 	{
 		$result = 0;
 		$profile_html = null;
+		$sql = null;
 
 		if (Tools::isSubmit('search'))
 		{
 			$sql = $this->getCriteriaQuery(array_merge($this->profile));
-
-			var_dump($sql);
 			$customers = Db::getInstance()->ExecuteS($sql);
 
 			$result = count($customers);
@@ -79,6 +78,7 @@ class StatsSegmentation extends Module
 				'segmentation_purchases_criterias' => $purchases_html,
 				'segmentation_habits_criterias' => $habits_html,
 				'segmentation_result' => $result,
+				'segmentation_query' => $sql,
 			)
 		);
 
@@ -129,8 +129,8 @@ class StatsSegmentation extends Module
 			$criteria
 				->setName($data_criteria->canonical->__toString())
 				->setDescription($data_criteria->description->__toString())
+				->setSwitchs($data_criteria->switch1->__toString(), $data_criteria->switch2->__toString())
 				;
-
 			$type = $data_criteria->type;
 			switch ($type->name)
 			{

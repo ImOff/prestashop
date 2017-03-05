@@ -73,6 +73,8 @@
 	</form>
 
 	<p>{$segmentation_result} results available with the selected criteria.</p>
+
+	<p style="background-color: #CEF6D8;">{$segmentation_query}</p>
 </div>
 
 <script type="text/javascript">

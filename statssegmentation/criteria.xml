@@ -4,8 +4,8 @@
 		<categorie>Profil</categorie>
 		<canonical>newsletter</canonical>
 		<description>Newsletter (if enabled)</description>
-		<switch>Oui</switch>
-		<switch>Non</switch>
+		<switch1>Oui</switch1>
+		<switch2>Non</switch2>
 		<type>
 			<name>none</name>
 			<query>newsletter # (1)</query>
@@ -15,8 +15,8 @@
 		<categorie>Profil</categorie>
 		<description>Opt-in</description>
 		<canonical>optin</canonical>
-		<switch>Oui</switch>
-		<switch>Non</switch>
+		<switch1>Oui</switch1>
+		<switch2>Non</switch2>
 		<type>
 			<name>none</name>
 			<query>optin # (1)</query>
@@ -25,21 +25,24 @@
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Groupe Client</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<canonical>group</canonical>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>group_lang</nameTable>
 			<column>name</column>
 			<placeholder>All group</placeholder>
-			<query>id_group # (@)</query>
+			<query>id_customer # (SELECT id_customer FROM ps_customer_group WHERE id_group IN (@))</query>
+			<queryTable>SELECT id_group,name FROM id_group where id_lang = @ AND id_customer = @</queryTable>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Langue</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<canonical>lang</canonical>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>lang</nameTable>
@@ -51,63 +54,61 @@
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Devise</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<canonical>device</canonical>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>currency</nameTable>
 			<column>name</column>
 			<placeholder>All currencies</placeholder>
+			<query>id_shop # (SELECT id_shop FROM ps_currency_shop WHERE id_currency IN (@))</query>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Country</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<canonical>country</canonical>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>country_lang</nameTable>
 			<column>name</column>
 			<placeholder>All countries</placeholder>
+			<query>id_customer in (select id_customer from ps_orders where id_address_delivery in (select id_address from ps_address where id_country # (@)))</query>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Age</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>text</name>
 			<nameTable>customer</nameTable>
 			<column>birthday</column>
-			<placeholder>Min</placeholder>
-		</type>
-		<type>
-			<name>text</name>
-			<nameTable>customer</nameTable>
-			<column>birthday</column>
-			<placeholder>Max</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Profil</categorie>
 		<description>Sexe</description>
-		<switch>Inclus</switch>
-		<switch>Exclus</switch>
+		<canonical>sexe</canonical>
+		<switch1>Inclus</switch1>
+		<switch2>Exclus</switch2>
 		<type>
 			<name>select</name>
-			<nameTable>t</nameTable>
+			<nameTable>gender_lang</nameTable>
 			<column>b</column>
 			<placeholder>All sexes</placeholder>
-			<query>gender # (@)</query>
+			<query>id_gender # (@)</query>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Abandoned</categorie>
 		<description>Categorie</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>Categorie</nameTable>
@@ -118,28 +119,30 @@
 	<Criters>
 		<categorie>Abandoned</categorie>
 		<description>Marque</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>Marque</nameTable>
+			<placeholder>All brands</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Abandoned</categorie>
 		<description>Produit</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>Produit</nameTable>
+			<placeholder>All products</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Abandoned</categorie>
 		<description>Montant</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>text</name>
 			<nameTable>Montant</nameTable>
@@ -152,8 +155,8 @@
 	<Criters>
 		<categorie>Activity</categorie>
 		<description>No Command</description>
-		<switch>Avant</switch>
-		<switch>Après</switch>
+		<switch1>Avant</switch1>
+		<switch2>Après</switch2>
 		<type>
 			<name>date</name>
 			<nameTable>No Command</nameTable>
@@ -162,56 +165,51 @@
 	<Criters>
 		<categorie>Activity</categorie>
 		<description>Nombre de Commande</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
-			<name>number</name>
+			<name>text</name>
 			<nameTable>Montant</nameTable>
-		</type>	
-		<type>
-			<name>number</name>
-			<nameTable>Montant</nameTable>
-		</type>	
+		</type>
 	</Criters>
 	<Criters>
 		<categorie>Purchases</categorie>
 		<description>Categorie</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>Categorie</nameTable>
+			<placeholder>All categories</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Purchases</categorie>
 		<description>Marque</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>Marque</nameTable>
+			<placeholder>All brands</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Purchases</categorie>
 		<description>Produit</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>Produit</nameTable>
+			<placeholder>All products</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Purchases</categorie>
 		<description>Montant</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
-		<type>
-			<name>text</name>
-			<nameTable>Montant</nameTable>
-		</type>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>text</name>
 			<nameTable>Montant</nameTable>
@@ -220,21 +218,23 @@
 	<Criters>
 		<categorie>Habits</categorie>
 		<description>Paiement</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>Paiement</nameTable>
+			<placeholder>All paiement</placeholder>
 		</type>
 	</Criters>
 	<Criters>
 		<categorie>Habits</categorie>
 		<description>Livraison type</description>
-		<switch>Inclus</switch>
-		<switch>Exclu</switch>
+		<switch1>Inclus</switch1>
+		<switch2>Exclu</switch2>
 		<type>
 			<name>select</name>
 			<nameTable>Type Delivery</nameTable>
+			<placeholder>All type of delivery</placeholder>
 		</type>
 	</Criters>
 </bloc>
