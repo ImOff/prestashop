@@ -176,6 +176,7 @@
 		<type>
 			<name>text</name>
 			<nameTable>Montant</nameTable>
+			<query>id_customer # (select id_customer from ps_orders group by id_customer having count(id_customer) between '@' and '@')</query>
 		</type>
 	</Criters>
 	<Criters>
